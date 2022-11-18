@@ -1,6 +1,6 @@
 package com.molu.molu.controller.board;
 
-import com.molu.molu.common.api.CommonApi;
+import com.molu.molu.domain.api.CommonApi;
 import com.molu.molu.domain.dto.board.PostBoardRequest;
 import com.molu.molu.domain.enums.api.ResultCode;
 import com.molu.molu.domain.enums.api.ResultType;

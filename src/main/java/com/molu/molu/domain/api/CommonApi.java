@@ -1,4 +1,4 @@
-package com.molu.molu.common.api;
+package com.molu.molu.domain.api;
 
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
