@@ -1,5 +1,6 @@
 package com.molu.molu.common;
 
+import com.molu.molu.common.utils.Naming;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

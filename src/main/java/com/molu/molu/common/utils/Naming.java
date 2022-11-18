@@ -1,4 +1,4 @@
-package com.molu.molu.common;
+package com.molu.molu.common.utils;
 
 public class Naming {
     private static final String[] FRONT = {"어쩔","저쩔","참나","안물","안궁","우짤","뇌절","저짤"};

@@ -1,6 +1,6 @@
 package com.molu.molu.domain.entity.board;
 
-import com.molu.molu.common.Naming;
+import com.molu.molu.common.utils.Naming;
 import com.molu.molu.domain.dto.board.BoardRequest;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
