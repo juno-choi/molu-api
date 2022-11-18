@@ -2,10 +2,7 @@ package com.molu.molu.domain.entity.board;
 
 import com.molu.molu.common.utils.Naming;
 import com.molu.molu.domain.dto.board.PostBoardRequest;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -19,7 +16,7 @@ import java.util.List;
 @Getter
 @Setter
 @AllArgsConstructor
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @EntityListeners(AuditingEntityListener.class)
 public class Board {
     @Id
@@ -46,12 +43,7 @@ public class Board {
     @CreatedDate
     private LocalDateTime createdAt;
 
-    public void createBoard(PostBoardRequest request){
-        this.title = request.getTitle();
-        this.content = request.getContent();
-    }
-
-    public void makeWriter(){
-        this.writer = Naming.getName();
+    public static Board createBoard(PostBoardRequest request){
+        return new Board(null, null, request.getTitle(), request.getContent(), Naming.getName(), null, 0L, null, null);
     }
 }
