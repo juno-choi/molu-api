@@ -1,5 +1,7 @@
 package com.molu.molu.domain.entity.board;
 
+import com.molu.molu.common.Naming;
+import com.molu.molu.domain.dto.board.BoardRequest;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -29,6 +31,8 @@ public class Board {
     private String title;
     @Column(nullable = false, length = 500)
     private String content;
+    @Column(nullable = false)
+    private String writer;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "id")
     private List<Comment> comments = new ArrayList<>();
@@ -41,4 +45,13 @@ public class Board {
 
     @CreatedDate
     private LocalDateTime createdAt;
+
+    public void createBoard(BoardRequest request){
+        this.title = request.getTitle();
+        this.content = request.getContent();
+    }
+
+    public void makeWriter(){
+        this.writer = Naming.getName();
+    }
 }
