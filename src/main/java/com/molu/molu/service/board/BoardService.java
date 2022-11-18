@@ -1,8 +1,8 @@
 package com.molu.molu.service.board;
 
-import com.molu.molu.domain.dto.board.BoardRequest;
-import com.molu.molu.domain.vo.board.BoardResponse;
+import com.molu.molu.domain.dto.board.PostBoardRequest;
+import com.molu.molu.domain.vo.board.PostBoardResponse;
 
 public interface BoardService {
-    BoardResponse postBoard(BoardRequest request);
+    PostBoardResponse postBoard(PostBoardRequest request);
 }

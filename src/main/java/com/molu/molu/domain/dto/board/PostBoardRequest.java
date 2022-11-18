@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class BoardRequest {
+public class PostBoardRequest {
     private String title;
     private String content;
     private String writer;
