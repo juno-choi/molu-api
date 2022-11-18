@@ -31,4 +31,4 @@ logging:
     console: "[%d{HH:mm:ss.SSS}][%-5level][%logger.%method:line%line] - %msg%n"
   level:
     root: info
-    com.juno.ounapi: debug
+    com.molu.molu: debug

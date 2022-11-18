@@ -32,3 +32,20 @@ include::{snippets}/board-controller-docs/post-board/http-response.adoc[]
 ==== ✅ RESPONSE FIELD
 
 include::{snippets}/board-controller-docs/post-board/response-fields.adoc[]
+
+### 📄 글 목록 불러오기
+
+==== ✅ REQUEST
+include::{snippets}/board-controller-docs/get-board/http-request.adoc[]
+
+==== ✅ REQUEST FIELD
+
+include::{snippets}/board-controller-docs/get-board/request-parameters.adoc[]
+
+==== ✅ RESPONSE
+
+include::{snippets}/board-controller-docs/get-board/http-response.adoc[]
+
+==== ✅ RESPONSE FIELD
+
+include::{snippets}/board-controller-docs/get-board/response-fields.adoc[]
