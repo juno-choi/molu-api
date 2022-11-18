@@ -1,10 +1,10 @@
 package com.molu.molu.controller.board;
 
 import com.molu.molu.common.api.CommonApi;
-import com.molu.molu.domain.dto.board.BoardRequest;
+import com.molu.molu.domain.dto.board.PostBoardRequest;
 import com.molu.molu.domain.enums.api.ResultCode;
 import com.molu.molu.domain.enums.api.ResultType;
-import com.molu.molu.domain.vo.board.BoardResponse;
+import com.molu.molu.domain.vo.board.PostBoardResponse;
 import com.molu.molu.service.board.BoardService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -21,13 +21,13 @@ public class BoardController {
     private final BoardService boardService;
 
     @PostMapping("")
-    public ResponseEntity<CommonApi<BoardResponse>> postBoard(@RequestBody BoardRequest boardRequest){
+    public ResponseEntity<CommonApi<PostBoardResponse>> postBoard(@RequestBody PostBoardRequest postBoardRequest){
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(
-                        CommonApi.<BoardResponse>builder()
+                        CommonApi.<PostBoardResponse>builder()
                                 .resultCode(ResultCode.SUCCESS)
                                 .resultType(ResultType.NONE)
-                                .data(boardService.postBoard(boardRequest))
+                                .data(boardService.postBoard(postBoardRequest))
                                 .build()
                 );
     }

@@ -1,8 +1,8 @@
 package com.molu.molu.service.board;
 
-import com.molu.molu.domain.dto.board.BoardRequest;
+import com.molu.molu.domain.dto.board.PostBoardRequest;
 import com.molu.molu.domain.entity.board.Board;
-import com.molu.molu.domain.vo.board.BoardResponse;
+import com.molu.molu.domain.vo.board.PostBoardResponse;
 import com.molu.molu.repository.board.BoardRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -16,13 +16,13 @@ public class BoardServiceImpl implements BoardService{
 
     @Transactional
     @Override
-    public BoardResponse postBoard(BoardRequest request) {
+    public PostBoardResponse postBoard(PostBoardRequest request) {
         Board board = new Board();
         board.createBoard(request);
         board.makeWriter();
         boardRepository.save(board);
 
-        return BoardResponse.builder()
+        return PostBoardResponse.builder()
                 .boardId(board.getId())
                 .writer(board.getWriter())
                 .build();

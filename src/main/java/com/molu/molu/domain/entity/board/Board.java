@@ -1,7 +1,7 @@
 package com.molu.molu.domain.entity.board;
 
 import com.molu.molu.common.utils.Naming;
-import com.molu.molu.domain.dto.board.BoardRequest;
+import com.molu.molu.domain.dto.board.PostBoardRequest;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -46,7 +46,7 @@ public class Board {
     @CreatedDate
     private LocalDateTime createdAt;
 
-    public void createBoard(BoardRequest request){
+    public void createBoard(PostBoardRequest request){
         this.title = request.getTitle();
         this.content = request.getContent();
     }

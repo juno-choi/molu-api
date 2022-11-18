@@ -1,0 +1,34 @@
+ifndef::snippets[]
+:snippets: ./build/generated-snippets
+endif::[]
+:toc: left
+:toclevels: 2
+:toc-title: molu api
+:doctype: book
+:source-highlighter: highlightjs
+:sectlinks:
+
+= 🙃 molu API
+
+---
+
+= API 목록
+---
+== 📗 게시판
+
+### 📄 글 등록
+
+==== ✅ REQUEST
+include::{snippets}/board-controller-docs/post-board/http-request.adoc[]
+
+==== ✅ REQUEST FIELD
+
+include::{snippets}/board-controller-docs/post-board/request-fields.adoc[]
+
+==== ✅ RESPONSE
+
+include::{snippets}/board-controller-docs/post-board/http-response.adoc[]
+
+==== ✅ RESPONSE FIELD
+
+include::{snippets}/board-controller-docs/post-board/response-fields.adoc[]

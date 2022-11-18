@@ -1,8 +1,8 @@
 package com.molu.molu.service.board;
 
-import com.molu.molu.domain.dto.board.BoardRequest;
+import com.molu.molu.domain.dto.board.PostBoardRequest;
 import com.molu.molu.domain.entity.board.Board;
-import com.molu.molu.domain.vo.board.BoardResponse;
+import com.molu.molu.domain.vo.board.PostBoardResponse;
 import com.molu.molu.repository.board.BoardRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -26,12 +26,12 @@ class BoardServiceImplTest {
         //given
         String title = "제목";
         String content = "내용";
-        BoardRequest boardRequest = new BoardRequest(title, content, null);
+        PostBoardRequest postBoardRequest = new PostBoardRequest(title, content, null);
         //when
-        BoardResponse boardResponse = boardService.postBoard(boardRequest);
+        PostBoardResponse postBoardResponse = boardService.postBoard(postBoardRequest);
         //then
-        assertNotNull(boardResponse.getWriter());
-        Board board = boardRepository.findById(boardResponse.getBoardId()).get();
+        assertNotNull(postBoardResponse.getWriter());
+        Board board = boardRepository.findById(postBoardResponse.getBoardId()).get();
         assertEquals(title, board.getTitle());
         assertEquals(content, board.getContent());
     }
