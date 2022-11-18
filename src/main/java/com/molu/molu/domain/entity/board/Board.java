@@ -22,8 +22,7 @@ public class Board {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @Column(nullable = true)
-    private Long memberId;
+
     @Column(nullable = false, length = 30)
     private String title;
     @Column(nullable = false, length = 500)
@@ -44,6 +43,6 @@ public class Board {
     private LocalDateTime createdAt;
 
     public static Board createBoard(PostBoardRequest request){
-        return new Board(null, null, request.getTitle(), request.getContent(), Naming.getName(), null, 0L, null, null);
+        return new Board(null, request.getTitle(), request.getContent(), Naming.getName(), null, 0L, null, null);
     }
 }
