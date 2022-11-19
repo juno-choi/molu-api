@@ -1,4 +1,4 @@
-package com.molu.molu.common.api;
+package com.molu.molu.domain.api;
 
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
@@ -11,13 +11,13 @@ import lombok.Getter;
 
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class CommonApi<T> {
-    private ResultCode resultCode;
+    private String resultCode;
     private ResultType resultType;
     private String resultMessage;
     private T data;
 
     public CommonApi(ResultCode resultCode, ResultType resultType, String resultMessage, T data) {
-        this.resultCode = resultCode;
+        this.resultCode = resultCode.CODE;
         this.resultType = resultType;
         this.resultMessage = resultMessage;
         this.data = data;
@@ -25,7 +25,7 @@ public class CommonApi<T> {
 
     @Builder
     public CommonApi(ResultCode resultCode, ResultType resultType, T data) {
-        this.resultCode = resultCode;
+        this.resultCode = resultCode.CODE;
         this.resultType = resultType;
         this.resultMessage = resultCode.MESSAGE;
         this.data = data;
