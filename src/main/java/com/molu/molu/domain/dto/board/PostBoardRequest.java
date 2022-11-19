@@ -12,10 +12,4 @@ import lombok.Setter;
 public class PostBoardRequest {
     private String title;
     private String content;
-    private String writer;
-
-    public void makeWriter(){
-        String writer =
-        this.writer = "";
-    }
 }

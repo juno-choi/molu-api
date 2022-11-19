@@ -32,7 +32,7 @@ class BoardControllerDocs extends RestdocsTest {
         //given
         String title = "제목";
         String content = "내용";
-        PostBoardRequest postBoardRequest = new PostBoardRequest(title, content, null);
+        PostBoardRequest postBoardRequest = new PostBoardRequest(title, content);
         //when
         ResultActions perform = mockMvc.perform(
                 post("/v1/board")
@@ -42,8 +42,7 @@ class BoardControllerDocs extends RestdocsTest {
         perform.andDo(docs.document(
                 requestFields(
                         fieldWithPath("title").type(JsonFieldType.STRING).description("글 제목"),
-                        fieldWithPath("content").type(JsonFieldType.STRING).description("내용"),
-                        fieldWithPath("writer").type(JsonFieldType.NULL).description("요청하지 않아도 되는 내용").optional()
+                        fieldWithPath("content").type(JsonFieldType.STRING).description("내용")
                 ),
                 responseFields(
                         fieldWithPath("result_code").type(JsonFieldType.STRING).description("결과 코드"),
@@ -61,7 +60,7 @@ class BoardControllerDocs extends RestdocsTest {
     void getBoard() throws Exception {
         //given
         for(int i=0; i<20; i++){
-            PostBoardRequest postBoardRequest = new PostBoardRequest("제목" + i, "내용" + i, null);
+            PostBoardRequest postBoardRequest = new PostBoardRequest("제목" + i, "내용" + i);
             boardRepository.save(Board.createBoard(postBoardRequest));
         }
         //when

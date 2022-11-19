@@ -29,7 +29,7 @@ public class BoardControllerTest extends ControllerTest {
     @DisplayName("get board의 sort 값을 잘못 입력하면 실패한다.")
     void getBoardFail1() throws Exception {
         //given
-        PostBoardRequest postBoardRequest = new PostBoardRequest("제목", "내용", null);
+        PostBoardRequest postBoardRequest = new PostBoardRequest("제목", "내용");
         boardRepository.save(Board.createBoard(postBoardRequest));
         //when
         ResultActions perform = mockMvc.perform(

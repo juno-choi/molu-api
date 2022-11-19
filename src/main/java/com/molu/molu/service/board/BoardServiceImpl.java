@@ -1,7 +1,9 @@
 package com.molu.molu.service.board;
 
+import com.molu.molu.domain.dto.board.PatchBoardRequest;
 import com.molu.molu.domain.dto.board.PostBoardRequest;
 import com.molu.molu.domain.entity.board.Board;
+import com.molu.molu.domain.vo.board.AddHeartResponse;
 import com.molu.molu.domain.vo.board.GetBoardResponse;
 import com.molu.molu.domain.vo.board.PostBoardResponse;
 import com.molu.molu.repository.board.BoardRepository;
@@ -42,6 +44,20 @@ public class BoardServiceImpl implements BoardService{
                 .totalElements(findAll.getTotalElements())
                 .boardList(findAll.getContent())
                 .numberOfElements(findAll.getNumberOfElements())
+                .build();
+    }
+
+    @Override
+    @Transactional
+    public AddHeartResponse addHeader(PatchBoardRequest request) {
+        Board board = boardRepository.findById(request.getBoardId()).orElseThrow(() -> {
+            throw new IllegalArgumentException("유효 하지 않은 게시판 번호입니다.");
+        });
+        board.addHeart();
+
+        return AddHeartResponse.builder()
+                .boardId(board.getId())
+                .heart(board.getHeart())
                 .build();
     }
 
