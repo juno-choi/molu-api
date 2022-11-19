@@ -7,6 +7,7 @@ import com.molu.molu.domain.vo.board.AddHeartResponse;
 import com.molu.molu.domain.vo.board.GetBoardResponse;
 import com.molu.molu.domain.vo.board.PostBoardResponse;
 import com.molu.molu.repository.board.BoardRepository;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.parallel.Execution;
@@ -64,6 +65,17 @@ class BoardServiceImplTest {
         //then
         Stream<String> title = board.getBoardList().stream().filter(b -> b.getContent().equals("내용10")).map(b -> b.getTitle());
         assertTrue(title.count() == 1);
+    }
+
+    @Test
+    @DisplayName("게시글 id가 유효하지 않으면 좋아요 추가에 실패한다.")
+    void addHeartFail1() throws Exception {
+        //given
+        PatchBoardRequest request = new PatchBoardRequest(112312300L);
+        //when
+        IllegalArgumentException ex = assertThrows(IllegalArgumentException.class, () -> boardService.addHeader(request));
+        //then
+        assertEquals("유효 하지 않은 게시판 번호입니다.", ex.getMessage());
     }
 
     @Test
