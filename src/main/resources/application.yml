@@ -1,7 +1,14 @@
 spring:
   #profile 설정
   profiles:
-    active: local
+    active: ${server.profile:local}
+
+logging:
+  pattern:
+    console: "[%d{HH:mm:ss.SSS}][%-5level][%logger.%method:line%line] - %msg%n"
+  level:
+    root: info
+    com.molu.molu: debug
 
 --- #local
 spring:
@@ -26,9 +33,19 @@ spring:
       username: sa
       password:
 
-logging:
-  pattern:
-    console: "[%d{HH:mm:ss.SSS}][%-5level][%logger.%method:line%line] - %msg%n"
-  level:
-    root: info
-    com.molu.molu: debug
+--- #dev
+spring:
+  config:
+    activate:
+      on-profile: dev
+  jpa:
+    #open-in-view: true #OSIV(Open Session In View) false일 경우 영속성 컨텍스트가 서비스까지만 존재
+    hibernate:
+      ddl-auto: update  #절대 수정 금지
+    show-sql: true
+  datasource:
+    hikari:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      jdbc-url: ${db.url:jdbc:mysql://localhost/molu}
+      username: ${db.username:username}
+      password: ${db.password:password}
