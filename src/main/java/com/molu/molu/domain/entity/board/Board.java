@@ -45,4 +45,8 @@ public class Board {
     public static Board createBoard(PostBoardRequest request){
         return new Board(null, request.getTitle(), request.getContent(), Naming.getName(), null, 0L, null, null);
     }
+
+    public void addHeart(){
+        this.heart++;
+    }
 }
