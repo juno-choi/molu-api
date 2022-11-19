@@ -1,6 +1,7 @@
 package com.molu.molu.controller.board;
 
 import com.molu.molu.controller.config.RestdocsTest;
+import com.molu.molu.domain.dto.board.PatchBoardRequest;
 import com.molu.molu.domain.dto.board.PostBoardRequest;
 import com.molu.molu.domain.entity.board.Board;
 import com.molu.molu.repository.board.BoardRepository;
@@ -18,6 +19,7 @@ import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuild
 import static org.springframework.restdocs.payload.PayloadDocumentation.*;
 import static org.springframework.restdocs.request.RequestDocumentation.parameterWithName;
 import static org.springframework.restdocs.request.RequestDocumentation.requestParameters;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 
 @SpringBootTest
@@ -26,8 +28,10 @@ class BoardControllerDocs extends RestdocsTest {
     @Autowired
     private BoardRepository boardRepository;
 
+    private final String PREFIX = "/v1/board";
+
     @Test
-    @DisplayName("/v1/board (post)")
+    @DisplayName(PREFIX+" (post)")
     void postBoard() throws Exception {
         //given
         String title = "제목";
@@ -35,7 +39,7 @@ class BoardControllerDocs extends RestdocsTest {
         PostBoardRequest postBoardRequest = new PostBoardRequest(title, content);
         //when
         ResultActions perform = mockMvc.perform(
-                post("/v1/board")
+                post(PREFIX)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(convertToString(postBoardRequest)));
         //then
@@ -56,7 +60,7 @@ class BoardControllerDocs extends RestdocsTest {
 
 
     @Test
-    @DisplayName("/v1/board (get)")
+    @DisplayName(PREFIX+" (get)")
     void getBoard() throws Exception {
         //given
         for(int i=0; i<20; i++){
@@ -65,7 +69,7 @@ class BoardControllerDocs extends RestdocsTest {
         }
         //when
         ResultActions perform = mockMvc.perform(
-                get("/v1/board")
+                get(PREFIX)
                 .param("page", "0")
                 .param("size", "5")
                 .param("sort", "id,desc"));
@@ -93,6 +97,34 @@ class BoardControllerDocs extends RestdocsTest {
                         fieldWithPath("data.board_list[].heart").type(JsonFieldType.NUMBER).description("게시글 좋아요"),
                         fieldWithPath("data.board_list[].modifiedAt").type(JsonFieldType.STRING).description("게시글 수정일"),
                         fieldWithPath("data.board_list[].createdAt").type(JsonFieldType.STRING).description("게시글 생성일")
+                )
+        ));
+    }
+
+    @Test
+    @DisplayName(PREFIX+"/heart (patch)")
+    void addHeart() throws Exception {
+        //given
+        PostBoardRequest postBoardRequest = new PostBoardRequest("좋아요 게시글", "내용");
+        Board saveBoard = boardRepository.save(Board.createBoard(postBoardRequest));
+        Long boardId = saveBoard.getId();
+
+        PatchBoardRequest patchBoardRequest = new PatchBoardRequest(boardId);
+        //when
+        ResultActions perform = mockMvc.perform(patch(PREFIX + "/heart")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(convertToString(patchBoardRequest)));
+        //then
+        perform.andDo(docs.document(
+                requestFields(
+                        fieldWithPath("board_id").type(JsonFieldType.NUMBER).description("글 id")
+                ),
+                responseFields(
+                        fieldWithPath("result_code").type(JsonFieldType.STRING).description("결과 코드"),
+                        fieldWithPath("result_type").type(JsonFieldType.STRING).description("결과 타입"),
+                        fieldWithPath("result_message").type(JsonFieldType.STRING).description("결과 메세지"),
+                        fieldWithPath("data.board_id").type(JsonFieldType.NUMBER).description("게시판 id"),
+                        fieldWithPath("data.heart").type(JsonFieldType.NUMBER).description("게시물 좋아요 개수")
                 )
         ));
     }

@@ -49,3 +49,20 @@ include::{snippets}/board-controller-docs/get-board/http-response.adoc[]
 ==== ✅ RESPONSE FIELD
 
 include::{snippets}/board-controller-docs/get-board/response-fields.adoc[]
+
+### 📄 좋아요 추가
+
+==== ✅ REQUEST
+include::{snippets}/board-controller-docs/add-heart/http-request.adoc[]
+
+==== ✅ REQUEST FIELD
+
+include::{snippets}/board-controller-docs/add-heart/request-fields.adoc[]
+
+==== ✅ RESPONSE
+
+include::{snippets}/board-controller-docs/add-heart/http-response.adoc[]
+
+==== ✅ RESPONSE FIELD
+
+include::{snippets}/board-controller-docs/add-heart/response-fields.adoc[]

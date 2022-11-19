@@ -1,9 +1,11 @@
 package com.molu.molu.controller.board;
 
 import com.molu.molu.domain.api.CommonApi;
+import com.molu.molu.domain.dto.board.PatchBoardRequest;
 import com.molu.molu.domain.dto.board.PostBoardRequest;
 import com.molu.molu.domain.enums.api.ResultCode;
 import com.molu.molu.domain.enums.api.ResultType;
+import com.molu.molu.domain.vo.board.AddHeartResponse;
 import com.molu.molu.domain.vo.board.GetBoardResponse;
 import com.molu.molu.domain.vo.board.PostBoardResponse;
 import com.molu.molu.service.board.BoardService;
@@ -43,5 +45,16 @@ public class BoardController {
                                 .data(boardService.getBoard(pageable))
                                 .build()
                 );
+    }
+
+    @PatchMapping("/heart")
+    public ResponseEntity<CommonApi<AddHeartResponse>> addHeart(@RequestBody PatchBoardRequest patchBoardRequest){
+        return ResponseEntity.ok(
+                CommonApi.<AddHeartResponse>builder()
+                        .resultCode(ResultCode.SUCCESS)
+                        .resultType(ResultType.NONE)
+                        .data(boardService.addHeader(patchBoardRequest))
+                        .build()
+        );
     }
 }
