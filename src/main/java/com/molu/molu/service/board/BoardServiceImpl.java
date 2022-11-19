@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.mapping.PropertyReferenceException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -33,7 +34,7 @@ public class BoardServiceImpl implements BoardService{
 
     @Override
     public GetBoardResponse getBoard(Pageable page) {
-        Page<Board> findAll = boardRepository.findAll(page);
+        Page<Board> findAll = getBoardPage(page);
         return GetBoardResponse.builder()
                 .last(findAll.isLast())
                 .empty(findAll.isEmpty())
@@ -42,5 +43,15 @@ public class BoardServiceImpl implements BoardService{
                 .boardList(findAll.getContent())
                 .numberOfElements(findAll.getNumberOfElements())
                 .build();
+    }
+
+    private Page<Board> getBoardPage(Pageable page) {
+        Page<Board> findAll;
+        try{
+            findAll = boardRepository.findAll(page);
+        }catch (PropertyReferenceException e){
+            throw new IllegalArgumentException(String.format("잘못된 요청 값 = %s", e.getPropertyName()));
+        }
+        return findAll;
     }
 }

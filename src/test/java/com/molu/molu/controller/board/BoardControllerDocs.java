@@ -6,6 +6,8 @@ import com.molu.molu.domain.entity.board.Board;
 import com.molu.molu.repository.board.BoardRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.parallel.Execution;
+import org.junit.jupiter.api.parallel.ExecutionMode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
@@ -19,6 +21,7 @@ import static org.springframework.restdocs.request.RequestDocumentation.requestP
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 
 @SpringBootTest
+@Execution(ExecutionMode.SAME_THREAD)
 class BoardControllerDocs extends RestdocsTest {
     @Autowired
     private BoardRepository boardRepository;
