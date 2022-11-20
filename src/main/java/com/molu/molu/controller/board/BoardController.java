@@ -15,7 +15,10 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/v1/board")
@@ -24,7 +27,7 @@ public class BoardController {
     private final BoardService boardService;
 
     @PostMapping("")
-    public ResponseEntity<CommonApi<PostBoardResponse>> postBoard(@RequestBody PostBoardRequest postBoardRequest){
+    public ResponseEntity<CommonApi<PostBoardResponse>> postBoard(@Valid @RequestBody PostBoardRequest postBoardRequest, BindingResult bindingResult){
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(
                         CommonApi.<PostBoardResponse>builder()
@@ -48,7 +51,7 @@ public class BoardController {
     }
 
     @PatchMapping("/heart")
-    public ResponseEntity<CommonApi<AddHeartResponse>> addHeart(@RequestBody PatchBoardRequest patchBoardRequest){
+    public ResponseEntity<CommonApi<AddHeartResponse>> addHeart(@Valid @RequestBody PatchBoardRequest patchBoardRequest, BindingResult bindingResult){
         return ResponseEntity.ok(
                 CommonApi.<AddHeartResponse>builder()
                         .resultCode(ResultCode.SUCCESS)
