@@ -8,7 +8,7 @@ plugins {
 
 group = 'com.molu'
 version = '0.1'
-sourceCompatibility = '17'
+sourceCompatibility = '11'
 
 configurations {
 	compileOnly {
