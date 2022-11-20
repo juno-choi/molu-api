@@ -6,11 +6,13 @@ import com.molu.molu.domain.error.Error;
 import lombok.Builder;
 import lombok.Getter;
 
+import java.util.List;
+
 @Getter
 @Builder
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class CommonError {
     private String errorCode;
     private String message;
-    private Error error;
+    private List<Error> errors;
 }
