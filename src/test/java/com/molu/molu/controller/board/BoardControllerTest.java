@@ -44,7 +44,8 @@ public class BoardControllerTest extends ControllerTest {
                 .content(convertToString(postBoardRequest)))
                 .andDo(print());
         //then
-        perform.andExpect(content().json("{\"error_code\":\"9400\",\"message\":\"잘못된 요청\",\"error\":{\"message\":\"제목을 입력해주세요.\"}}"));
+        perform.andExpect(status().is4xxClientError());
+        perform.andExpect(content().json("{\"error_code\":\"9400\",\"message\":\"잘못된 요청. error field 값은 모두 snake 전략으로 변경하여 요청해주세요.\",\"errors\":[{\"field\":\"title\",\"message\":\"제목을 입력해주세요.\"}]}"));
     }
 
     @Test
@@ -58,7 +59,21 @@ public class BoardControllerTest extends ControllerTest {
                 .content(convertToString(postBoardRequest)))
                 .andDo(print());
         //then
-        perform.andExpect(content().json("{\"error_code\":\"9400\",\"message\":\"잘못된 요청\",\"error\":{\"message\":\"내용을 입력해주세요.\"}}"));
+        perform.andExpect(status().is4xxClientError());
+        perform.andExpect(content().json("{\"error_code\":\"9400\",\"message\":\"잘못된 요청. error field 값은 모두 snake 전략으로 변경하여 요청해주세요.\",\"errors\":[{\"field\":\"content\",\"message\":\"내용을 입력해주세요.\"}]}"));
+    }
+    @Test
+    @DisplayName("아무 입력도 없는 게시물 등록은 실패한다.")
+    void postBoardFail3() throws Exception {
+        //given
+        PostBoardRequest postBoardRequest = new PostBoardRequest(null, null);
+        //when
+        ResultActions perform = mockMvc.perform(post(PREFIX)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(convertToString(postBoardRequest)))
+                .andDo(print());
+        //then
+        perform.andExpect(content().json("{\"error_code\":\"9400\",\"message\":\"잘못된 요청. error field 값은 모두 snake 전략으로 변경하여 요청해주세요.\",\"errors\":[{\"field\":\"content\",\"message\":\"내용을 입력해주세요.\"},{\"field\":\"title\",\"message\":\"제목을 입력해주세요.\"}]}"));
     }
 
     @Test
@@ -93,7 +108,7 @@ public class BoardControllerTest extends ControllerTest {
                 .andDo(print());
         //then
         perform.andExpect(status().is4xxClientError());
-        perform.andExpect(content().json("{\"error_code\":\"9400\",\"message\":\"잘못된 요청\",\"error\":{\"message\":\"유효 하지 않은 게시판 번호입니다.\"}}"));
+        perform.andExpect(content().json("{\"error_code\":\"9400\",\"message\":\"잘못된 요청\",\"errors\":[{\"message\":\"유효 하지 않은 게시판 번호입니다.\"}]}"));
 
     }
 
@@ -109,7 +124,7 @@ public class BoardControllerTest extends ControllerTest {
                 .andDo(print());
         //then
         perform.andExpect(status().is4xxClientError());
-        perform.andExpect(content().json("{\"error_code\":\"9400\",\"message\":\"잘못된 요청\",\"error\":{\"message\":\"게시판 번호는 필수값입니다.\"}}"));
+        perform.andExpect(content().json("{\"error_code\":\"9400\",\"message\":\"잘못된 요청. error field 값은 모두 snake 전략으로 변경하여 요청해주세요.\",\"errors\":[{\"field\":\"boardId\",\"message\":\"게시판 번호는 필수값입니다.\"}]}"));
 
     }
 }
