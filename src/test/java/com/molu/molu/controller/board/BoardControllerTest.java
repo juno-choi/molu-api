@@ -20,6 +20,7 @@ import java.nio.charset.StandardCharsets;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.get;
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.patch;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -31,6 +32,34 @@ public class BoardControllerTest extends ControllerTest {
     private BoardRepository boardRepository;
 
     private final String PREFIX = "/v1/board";
+
+    @Test
+    @DisplayName("title 존재하지 않은 게시물 등록은 실패한다.")
+    void postBoardFail1() throws Exception {
+        //given
+        PostBoardRequest postBoardRequest = new PostBoardRequest(null, "내용만 입력");
+        //when
+        ResultActions perform = mockMvc.perform(post(PREFIX)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(convertToString(postBoardRequest)))
+                .andDo(print());
+        //then
+        perform.andExpect(content().json("{\"error_code\":\"9400\",\"message\":\"잘못된 요청\",\"error\":{\"message\":\"제목을 입력해주세요.\"}}"));
+    }
+
+    @Test
+    @DisplayName("내용 없는 게시물 등록은 실패한다.")
+    void postBoardFail2() throws Exception {
+        //given
+        PostBoardRequest postBoardRequest = new PostBoardRequest("제목만 입력", "");
+        //when
+        ResultActions perform = mockMvc.perform(post(PREFIX)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(convertToString(postBoardRequest)))
+                .andDo(print());
+        //then
+        perform.andExpect(content().json("{\"error_code\":\"9400\",\"message\":\"잘못된 요청\",\"error\":{\"message\":\"내용을 입력해주세요.\"}}"));
+    }
 
     @Test
     @DisplayName("get board의 sort 값을 잘못 입력하면 실패한다.")
@@ -65,6 +94,22 @@ public class BoardControllerTest extends ControllerTest {
         //then
         perform.andExpect(status().is4xxClientError());
         perform.andExpect(content().json("{\"error_code\":\"9400\",\"message\":\"잘못된 요청\",\"error\":{\"message\":\"유효 하지 않은 게시판 번호입니다.\"}}"));
+
+    }
+
+    @Test
+    @DisplayName("비어있는 게시물 id 요청은 좋아요에 실패한다.")
+    void addHeartFail2() throws Exception {
+        //given
+        PatchBoardRequest patchBoardRequest = new PatchBoardRequest(null);
+        //when
+        ResultActions perform = mockMvc.perform(patch(PREFIX + "/heart")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(convertToString(patchBoardRequest)))
+                .andDo(print());
+        //then
+        perform.andExpect(status().is4xxClientError());
+        perform.andExpect(content().json("{\"error_code\":\"9400\",\"message\":\"잘못된 요청\",\"error\":{\"message\":\"게시판 번호는 필수값입니다.\"}}"));
 
     }
 }
