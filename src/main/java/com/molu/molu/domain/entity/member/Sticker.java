@@ -1,9 +1,6 @@
 package com.molu.molu.domain.entity.member;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -14,11 +11,11 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @AllArgsConstructor
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @EntityListeners(AuditingEntityListener.class)
 public class Sticker {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "sticker_id")
     private Long id;
 
@@ -26,11 +23,15 @@ public class Sticker {
     @JoinColumn(name = "member_id")
     private Member member;
 
-    private long fromMemberId;
+    private Long fromMemberId;
     private String fromMemberName;
     private String reason;
     private int ea;
 
     @CreatedDate
     private LocalDateTime createdAt;
+
+    public static Sticker createSticker(Member toMember, Member fromMember, String reason, int ea){
+        return new Sticker(null, toMember, fromMember.getMemberId(), fromMember.getName(), reason, ea, null);
+    }
 }
