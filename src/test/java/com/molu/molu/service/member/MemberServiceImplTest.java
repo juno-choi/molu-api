@@ -39,6 +39,5 @@ class MemberServiceImplTest{
         PostStickerResponse sticker = memberService.postSticker(saveLuna.getMemberId(), saveJuno.getMemberId(), "칭찬해", 10);
         //then
         Member findLuna = memberRepository.findById(saveLuna.getMemberId()).get();
-        System.out.println("");
     }
 }

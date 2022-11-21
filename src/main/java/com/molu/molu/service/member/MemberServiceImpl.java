@@ -29,7 +29,7 @@ public class MemberServiceImpl implements MemberService{
         toMember.changeSticker(stickerRepository.save(sticker));
 
         return PostStickerResponse.builder()
-                .toMember(toMember.getName())
+                .toMemberName(toMember.getName())
                 .ea(ea)
                 .reason(reason)
                 .build();

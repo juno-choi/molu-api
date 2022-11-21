@@ -14,6 +14,27 @@ endif::[]
 
 = API 목록
 ---
+
+== 📗 회원
+
+### 📄 스티카 발급
+
+==== ✅ REQUEST
+include::{snippets}/member-controller-docs/sticker-simple/http-request.adoc[]
+
+==== ✅ REQUEST FIELD
+
+include::{snippets}/member-controller-docs/sticker-simple/request-parameters.adoc[]
+
+==== ✅ RESPONSE
+
+include::{snippets}/member-controller-docs/sticker-simple/http-response.adoc[]
+
+==== ✅ RESPONSE FIELD
+
+include::{snippets}/member-controller-docs/sticker-simple/response-fields.adoc[]
+
+
 == 📗 게시판
 
 ### 📄 글 등록
