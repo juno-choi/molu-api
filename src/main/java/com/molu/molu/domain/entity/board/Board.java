@@ -1,7 +1,7 @@
 package com.molu.molu.domain.entity.board;
 
 import com.molu.molu.common.utils.Naming;
-import com.molu.molu.domain.dto.board.PostBoardRequest;
+import com.molu.molu.domain.dto.board.PostBoard;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -42,7 +42,7 @@ public class Board {
     @CreatedDate
     private LocalDateTime createdAt;
 
-    public static Board createBoard(PostBoardRequest request){
+    public static Board createBoard(PostBoard request){
         return new Board(null, request.getTitle(), request.getContent(), Naming.getName(), null, 0L, null, null);
     }
 

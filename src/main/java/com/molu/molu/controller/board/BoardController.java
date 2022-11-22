@@ -1,8 +1,8 @@
 package com.molu.molu.controller.board;
 
 import com.molu.molu.domain.api.CommonApi;
-import com.molu.molu.domain.dto.board.PatchBoardRequest;
-import com.molu.molu.domain.dto.board.PostBoardRequest;
+import com.molu.molu.domain.dto.board.PatchBoard;
+import com.molu.molu.domain.dto.board.PostBoard;
 import com.molu.molu.domain.enums.api.ResultCode;
 import com.molu.molu.domain.enums.api.ResultType;
 import com.molu.molu.domain.vo.board.AddHeartResponse;
@@ -27,13 +27,13 @@ public class BoardController {
     private final BoardService boardService;
 
     @PostMapping("")
-    public ResponseEntity<CommonApi<PostBoardResponse>> postBoard(@Valid @RequestBody PostBoardRequest postBoardRequest, BindingResult bindingResult){
+    public ResponseEntity<CommonApi<PostBoardResponse>> postBoard(@Valid @RequestBody PostBoard postBoard, BindingResult bindingResult){
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(
                         CommonApi.<PostBoardResponse>builder()
                                 .resultCode(ResultCode.SUCCESS)
                                 .resultType(ResultType.NONE)
-                                .data(boardService.postBoard(postBoardRequest))
+                                .data(boardService.postBoard(postBoard))
                                 .build()
                 );
     }
@@ -51,12 +51,12 @@ public class BoardController {
     }
 
     @PatchMapping("/heart")
-    public ResponseEntity<CommonApi<AddHeartResponse>> addHeart(@Valid @RequestBody PatchBoardRequest patchBoardRequest, BindingResult bindingResult){
+    public ResponseEntity<CommonApi<AddHeartResponse>> addHeart(@Valid @RequestBody PatchBoard patchBoard, BindingResult bindingResult){
         return ResponseEntity.ok(
                 CommonApi.<AddHeartResponse>builder()
                         .resultCode(ResultCode.SUCCESS)
                         .resultType(ResultType.NONE)
-                        .data(boardService.addHeader(patchBoardRequest))
+                        .data(boardService.addHeader(patchBoard))
                         .build()
         );
     }
