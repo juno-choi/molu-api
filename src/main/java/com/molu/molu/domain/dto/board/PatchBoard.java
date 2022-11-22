@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
-public class PatchBoardRequest {
+public class PatchBoard {
     @NotNull(message = "게시판 번호는 필수값입니다.")
     private Long boardId;
 }

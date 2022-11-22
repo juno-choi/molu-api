@@ -9,7 +9,7 @@ import javax.validation.constraints.Size;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class PostBoardRequest {
+public class PostBoard {
 
     @NotEmpty(message = "제목을 입력해주세요.")
     @Size(min = 1, max = 30, message = "제목은 1~30 글자 입니다.")

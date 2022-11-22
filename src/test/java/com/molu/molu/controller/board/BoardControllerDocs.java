@@ -1,8 +1,8 @@
 package com.molu.molu.controller.board;
 
 import com.molu.molu.controller.config.RestdocsTest;
-import com.molu.molu.domain.dto.board.PatchBoardRequest;
-import com.molu.molu.domain.dto.board.PostBoardRequest;
+import com.molu.molu.domain.dto.board.PatchBoard;
+import com.molu.molu.domain.dto.board.PostBoard;
 import com.molu.molu.domain.entity.board.Board;
 import com.molu.molu.repository.board.BoardRepository;
 import org.junit.jupiter.api.DisplayName;
@@ -36,12 +36,12 @@ class BoardControllerDocs extends RestdocsTest {
         //given
         String title = "제목";
         String content = "내용";
-        PostBoardRequest postBoardRequest = new PostBoardRequest(title, content);
+        PostBoard postBoard = new PostBoard(title, content);
         //when
         ResultActions perform = mockMvc.perform(
                 post(PREFIX)
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(convertToString(postBoardRequest)));
+                        .content(convertToString(postBoard)));
         //then
         perform.andDo(docs.document(
                 requestFields(
@@ -64,8 +64,8 @@ class BoardControllerDocs extends RestdocsTest {
     void getBoard() throws Exception {
         //given
         for(int i=0; i<20; i++){
-            PostBoardRequest postBoardRequest = new PostBoardRequest("제목" + i, "내용" + i);
-            boardRepository.save(Board.createBoard(postBoardRequest));
+            PostBoard postBoard = new PostBoard("제목" + i, "내용" + i);
+            boardRepository.save(Board.createBoard(postBoard));
         }
         //when
         ResultActions perform = mockMvc.perform(
@@ -105,15 +105,15 @@ class BoardControllerDocs extends RestdocsTest {
     @DisplayName(PREFIX+"/heart (patch)")
     void addHeart() throws Exception {
         //given
-        PostBoardRequest postBoardRequest = new PostBoardRequest("좋아요 게시글", "내용");
-        Board saveBoard = boardRepository.save(Board.createBoard(postBoardRequest));
+        PostBoard postBoard = new PostBoard("좋아요 게시글", "내용");
+        Board saveBoard = boardRepository.save(Board.createBoard(postBoard));
         Long boardId = saveBoard.getId();
 
-        PatchBoardRequest patchBoardRequest = new PatchBoardRequest(boardId);
+        PatchBoard patchBoard = new PatchBoard(boardId);
         //when
         ResultActions perform = mockMvc.perform(patch(PREFIX + "/heart")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(convertToString(patchBoardRequest)));
+                .content(convertToString(patchBoard)));
         //then
         perform.andDo(docs.document(
                 requestFields(
