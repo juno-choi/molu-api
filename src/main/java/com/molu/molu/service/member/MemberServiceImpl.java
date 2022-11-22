@@ -1,7 +1,9 @@
 package com.molu.molu.service.member;
 
+import com.molu.molu.domain.dto.member.PostMember;
 import com.molu.molu.domain.entity.member.Member;
 import com.molu.molu.domain.entity.member.Sticker;
+import com.molu.molu.domain.vo.member.PostMemberResponse;
 import com.molu.molu.domain.vo.member.PostStickerResponse;
 import com.molu.molu.repository.member.MemberRepository;
 import com.molu.molu.repository.member.StickerRepository;
@@ -15,6 +17,17 @@ import org.springframework.transaction.annotation.Transactional;
 public class MemberServiceImpl implements MemberService{
     private final MemberRepository memberRepository;
     private final StickerRepository stickerRepository;
+
+    @Transactional
+    @Override
+    public PostMemberResponse postMember(PostMember postMember) {
+        Member member = Member.createMember(postMember.getName());
+        Member saveMember = memberRepository.save(member);
+        return PostMemberResponse.builder()
+                .memberId(saveMember.getMemberId())
+                .name(saveMember.getName())
+                .build();
+    }
 
     @Transactional
     @Override

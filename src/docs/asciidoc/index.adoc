@@ -17,6 +17,24 @@ endif::[]
 
 == 📗 회원
 
+### 📄 회원 가입
+
+==== ✅ REQUEST
+include::{snippets}/member-controller-docs/post-member/http-request.adoc[]
+
+==== ✅ REQUEST FIELD
+
+include::{snippets}/member-controller-docs/post-member/request-fields.adoc[]
+
+==== ✅ RESPONSE
+
+include::{snippets}/member-controller-docs/post-member/http-response.adoc[]
+
+==== ✅ RESPONSE FIELD
+
+include::{snippets}/member-controller-docs/post-member/response-fields.adoc[]
+
+
 ### 📄 스티카 발급
 
 ==== ✅ REQUEST

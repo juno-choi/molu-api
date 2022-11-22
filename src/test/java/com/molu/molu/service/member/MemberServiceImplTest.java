@@ -1,6 +1,8 @@
 package com.molu.molu.service.member;
 
+import com.molu.molu.domain.dto.member.PostMember;
 import com.molu.molu.domain.entity.member.Member;
+import com.molu.molu.domain.vo.member.PostMemberResponse;
 import com.molu.molu.domain.vo.member.PostStickerResponse;
 import com.molu.molu.repository.member.MemberRepository;
 import com.molu.molu.repository.member.StickerRepository;
@@ -39,5 +41,17 @@ class MemberServiceImplTest{
         PostStickerResponse sticker = memberService.postSticker(saveLuna.getMemberId(), saveJuno.getMemberId(), "칭찬해", 10);
         //then
         Member findLuna = memberRepository.findById(saveLuna.getMemberId()).get();
+    }
+
+    @Test
+    @DisplayName("멤버 회원가입에 성공한다.")
+    void postMemberSuccess() throws Exception {
+        //given
+        PostMember postMember = new PostMember("tester");
+        //when
+        PostMemberResponse postMemberResponse = memberService.postMember(postMember);
+        //then
+        Member findMember = memberRepository.findById(postMemberResponse.getMemberId()).get();
+        assertEquals(postMember.getName(), findMember.getName());
     }
 }
