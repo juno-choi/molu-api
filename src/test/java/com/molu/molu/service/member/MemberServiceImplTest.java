@@ -2,6 +2,8 @@ package com.molu.molu.service.member;
 
 import com.molu.molu.domain.dto.member.PostMember;
 import com.molu.molu.domain.entity.member.Member;
+import com.molu.molu.domain.entity.member.Sticker;
+import com.molu.molu.domain.vo.member.GetMemberStickerResponse;
 import com.molu.molu.domain.vo.member.PostMemberResponse;
 import com.molu.molu.domain.vo.member.PostStickerResponse;
 import com.molu.molu.repository.member.MemberRepository;
@@ -28,6 +30,26 @@ class MemberServiceImplTest{
 
     @Autowired
     private StickerRepository stickerRepository;
+
+    @Test
+    @DisplayName("회원 스티커 조회에 성공한다.")
+    void getMemberSticker() throws Exception {
+        //given
+        Member luna = Member.createMember("루나");
+        Member juno = Member.createMember("주노");
+        Member saveLuna = memberRepository.save(luna);
+        Member saveJuno = memberRepository.save(juno);
+        Sticker sticker1 = Sticker.createSticker(saveLuna, saveJuno, "테스트로 줌1", 5);
+        Sticker sticker2 = Sticker.createSticker(saveLuna, saveJuno, "테스트로 줌2", 10);
+        Sticker saveSticker1 = stickerRepository.save(sticker1);
+        Sticker saveSticker2 =stickerRepository.save(sticker2);
+        saveLuna.changeSticker(saveSticker1);
+        saveLuna.changeSticker(saveSticker2);
+        //when
+        GetMemberStickerResponse memberSticker = memberService.getMemberSticker(saveLuna.getMemberId());
+        //then
+        assertTrue(memberSticker.getSticker().size() == 2);
+    }
 
     @Test
     @DisplayName("스티커 발급에 성공한다.")
