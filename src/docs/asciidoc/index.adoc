@@ -53,6 +53,23 @@ include::{snippets}/member-controller-docs/sticker-simple/http-response.adoc[]
 include::{snippets}/member-controller-docs/sticker-simple/response-fields.adoc[]
 
 
+### 📄 회원 스티카 확인
+
+==== ✅ REQUEST
+include::{snippets}/member-controller-docs/get-member-sticker/http-request.adoc[]
+
+==== ✅ REQUEST FIELD
+
+include::{snippets}/member-controller-docs/get-member-sticker/path-parameters.adoc[]
+
+==== ✅ RESPONSE
+
+include::{snippets}/member-controller-docs/get-member-sticker/http-response.adoc[]
+
+==== ✅ RESPONSE FIELD
+
+include::{snippets}/member-controller-docs/get-member-sticker/response-fields.adoc[]
+
 == 📗 게시판
 
 ### 📄 글 등록

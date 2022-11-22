@@ -4,6 +4,7 @@ import com.molu.molu.domain.api.CommonApi;
 import com.molu.molu.domain.dto.member.PostMember;
 import com.molu.molu.domain.enums.api.ResultCode;
 import com.molu.molu.domain.enums.api.ResultType;
+import com.molu.molu.domain.vo.member.GetMemberStickerResponse;
 import com.molu.molu.domain.vo.member.PostMemberResponse;
 import com.molu.molu.domain.vo.member.PostStickerResponse;
 import com.molu.molu.service.member.MemberService;
@@ -20,6 +21,16 @@ import javax.validation.Valid;
 @RequiredArgsConstructor
 public class MemberController {
     private final MemberService memberService;
+
+    @GetMapping("/sticker/{memberId}")
+    public ResponseEntity<CommonApi<GetMemberStickerResponse>> getMemberSticker(@PathVariable(value = "memberId") Long memberId){
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(CommonApi.<GetMemberStickerResponse>builder()
+                        .resultCode(ResultCode.SUCCESS)
+                        .resultType(ResultType.NONE)
+                        .data(memberService.getMemberSticker(memberId))
+                        .build());
+    }
 
     @PostMapping("")
     public ResponseEntity<CommonApi<PostMemberResponse>> postMember(@Valid @RequestBody PostMember postMember, BindingResult bindingResult){
