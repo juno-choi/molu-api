@@ -76,7 +76,7 @@ public class MemberServiceImpl implements MemberService{
 
         Sticker sticker = Sticker.createSticker(toMember, fromMember, reason, ea);
         toMember.changeSticker(stickerRepository.save(sticker));
-
+        memberRepository.save(toMember);
         return PostStickerResponse.builder()
                 .toMemberName(toMember.getName())
                 .ea(ea)
