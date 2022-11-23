@@ -22,8 +22,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @Execution(ExecutionMode.SAME_THREAD)
-@Transactional(readOnly = true)
-@Execution(ExecutionMode.SAME_THREAD)
 class MemberControllerTest extends ControllerTest {
     @Autowired
     private MemberRepository memberRepository;
