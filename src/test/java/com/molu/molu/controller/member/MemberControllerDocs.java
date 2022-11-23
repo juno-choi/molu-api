@@ -48,8 +48,6 @@ class MemberControllerDocs extends RestdocsTest {
         Sticker sticker2 = Sticker.createSticker(saveLuna, saveJuno, "테스트로 줌2", 10);
         Sticker saveSticker1 = stickerRepository.save(sticker1);
         Sticker saveSticker2 =stickerRepository.save(sticker2);
-        saveLuna.changeSticker(saveSticker1);
-        saveLuna.changeSticker(saveSticker2);
         //when
         ResultActions perform = mockMvc.perform(RestDocumentationRequestBuilders.get(PREFIX + "/sticker/{memberId}", saveLuna.getMemberId()).contentType(MediaType.APPLICATION_JSON_UTF8));
         //then
@@ -127,6 +125,7 @@ class MemberControllerDocs extends RestdocsTest {
                         fieldWithPath("result_code").type(JsonFieldType.STRING).description("결과 코드"),
                         fieldWithPath("result_type").type(JsonFieldType.STRING).description("결과 타입"),
                         fieldWithPath("result_message").type(JsonFieldType.STRING).description("결과 메세지"),
+                        fieldWithPath("data.sticker_id").type(JsonFieldType.NUMBER).description("스티카 번호"),
                         fieldWithPath("data.to_member_name").type(JsonFieldType.STRING).description("스티카 받은 회원 이름"),
                         fieldWithPath("data.ea").type(JsonFieldType.NUMBER).description("스티카 받은 개수"),
                         fieldWithPath("data.reason").type(JsonFieldType.STRING).description("스티카 받은 이유")

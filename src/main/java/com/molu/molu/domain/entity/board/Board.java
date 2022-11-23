@@ -30,9 +30,6 @@ public class Board {
     @Column(nullable = false)
     private String writer;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "id")
-    private List<Comment> comments = new ArrayList<>();
-
     @Column(nullable = true, columnDefinition = "bigint default 0")
     private long heart;
 
@@ -43,7 +40,7 @@ public class Board {
     private LocalDateTime createdAt;
 
     public static Board createBoard(PostBoard request){
-        return new Board(null, request.getTitle(), request.getContent(), Naming.getName(), null, 0L, null, null);
+        return new Board(null, request.getTitle(), request.getContent(), Naming.getName(), 0L, null, null);
     }
 
     public void addHeart(){

@@ -20,10 +20,6 @@ public class Comment {
     private Long id;
     private Long memberId;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "board_id")
-    private Board board;
-
     @Column(nullable = false, length = 100)
     private String comment;
     @LastModifiedDate

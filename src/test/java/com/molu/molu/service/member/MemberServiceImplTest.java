@@ -41,10 +41,10 @@ class MemberServiceImplTest{
         Member saveJuno = memberRepository.save(juno);
         Sticker sticker1 = Sticker.createSticker(saveLuna, saveJuno, "테스트로 줌1", 5);
         Sticker sticker2 = Sticker.createSticker(saveLuna, saveJuno, "테스트로 줌2", 10);
+        Sticker sticker3 = Sticker.createSticker(saveJuno, saveLuna, "테스트로 줌3", 3);
         Sticker saveSticker1 = stickerRepository.save(sticker1);
-        Sticker saveSticker2 =stickerRepository.save(sticker2);
-        saveLuna.changeSticker(saveSticker1);
-        saveLuna.changeSticker(saveSticker2);
+        Sticker saveSticker2 = stickerRepository.save(sticker2);
+        Sticker saveSticker3 = stickerRepository.save(sticker3);
         //when
         GetMemberStickerResponse memberSticker = memberService.getMemberSticker(saveLuna.getMemberId());
         //then

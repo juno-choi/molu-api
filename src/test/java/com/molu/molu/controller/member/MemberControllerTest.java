@@ -6,6 +6,8 @@ import com.molu.molu.domain.entity.member.Member;
 import com.molu.molu.repository.member.MemberRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.parallel.Execution;
+import org.junit.jupiter.api.parallel.ExecutionMode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
@@ -19,6 +21,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 
 @SpringBootTest
+@Execution(ExecutionMode.SAME_THREAD)
 @Transactional(readOnly = true)
 class MemberControllerTest extends ControllerTest {
     @Autowired
@@ -59,6 +62,5 @@ class MemberControllerTest extends ControllerTest {
         ).andDo(print());
         //then
         Member findLuna = memberRepository.findById(saveLuna.getMemberId()).get();
-        assertTrue(findLuna.getStickers().size() == 1);
     }
 }
