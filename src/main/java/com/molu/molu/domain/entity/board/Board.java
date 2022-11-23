@@ -10,6 +10,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 @Entity
@@ -30,6 +31,9 @@ public class Board {
     @Column(nullable = false)
     private String writer;
 
+    @OneToMany
+    private List<Comment> comments = new LinkedList<>();
+
     @Column(nullable = true, columnDefinition = "bigint default 0")
     private long heart;
 
@@ -40,7 +44,7 @@ public class Board {
     private LocalDateTime createdAt;
 
     public static Board createBoard(PostBoard request){
-        return new Board(null, request.getTitle(), request.getContent(), Naming.getName(), 0L, null, null);
+        return new Board(null, request.getTitle(), request.getContent(), Naming.getName(), new ArrayList<>(), 0L, null, null);
     }
 
     public void addHeart(){
