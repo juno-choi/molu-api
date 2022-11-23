@@ -29,7 +29,7 @@ public class MemberServiceImpl implements MemberService{
         Member findMember = memberRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("유효하지 않은 회원입니다."));
 
-        List<Sticker> stickers = findMember.getStickers();
+        List<Sticker> stickers = stickerRepository.findAllByMember(findMember);
         List<StickerVo> stickerList = new LinkedList<>();
         int totalStickers = 0;
         for (Sticker sticker : stickers) {
@@ -75,9 +75,9 @@ public class MemberServiceImpl implements MemberService{
                 .orElseThrow(() -> new IllegalArgumentException("스티커 발급하려는 회원이 유효하지 않습니다."));
 
         Sticker sticker = Sticker.createSticker(toMember, fromMember, reason, ea);
-        toMember.changeSticker(stickerRepository.save(sticker));
-        memberRepository.save(toMember);
+        stickerRepository.save(sticker);
         return PostStickerResponse.builder()
+                .stickerId(sticker.getId())
                 .toMemberName(toMember.getName())
                 .ea(ea)
                 .reason(reason)

@@ -21,6 +21,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 
 @SpringBootTest
+@Execution(ExecutionMode.SAME_THREAD)
 @Transactional(readOnly = true)
 @Execution(ExecutionMode.SAME_THREAD)
 class MemberControllerTest extends ControllerTest {
@@ -62,6 +63,5 @@ class MemberControllerTest extends ControllerTest {
         ).andDo(print());
         //then
         Member findLuna = memberRepository.findById(saveLuna.getMemberId()).get();
-        assertTrue(findLuna.getStickers().size() == 1);
     }
 }

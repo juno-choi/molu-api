@@ -9,6 +9,7 @@ import lombok.Getter;
 @Getter
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class PostStickerResponse {
+    private Long stickerId;
     private String toMemberName;
     private int ea;
     private String reason;
