@@ -1,6 +1,7 @@
 package com.molu.molu.service.member;
 
 import com.molu.molu.domain.dto.member.PostMember;
+import com.molu.molu.domain.dto.member.PostMemberSticker;
 import com.molu.molu.domain.entity.member.Member;
 import com.molu.molu.domain.entity.member.Sticker;
 import com.molu.molu.domain.vo.member.GetMemberStickerResponse;
@@ -13,7 +14,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -67,8 +67,7 @@ public class MemberServiceImpl implements MemberService{
 
     @Transactional
     @Override
-    public PostStickerResponse postSticker(Long toMemberId, Long fromMemberId, String reason, int ea) {
-
+    public PostStickerResponse simpleSticker(Long toMemberId, Long fromMemberId, String reason, int ea) {
         Member toMember = memberRepository.findById(toMemberId)
                 .orElseThrow(() -> new IllegalArgumentException("받는 회원이 유효하지 않습니다."));
         Member fromMember = memberRepository.findById(fromMemberId)
@@ -76,6 +75,27 @@ public class MemberServiceImpl implements MemberService{
 
         Sticker sticker = Sticker.createSticker(toMember, fromMember, reason, ea);
         stickerRepository.save(sticker);
+        return PostStickerResponse.builder()
+                .stickerId(sticker.getId())
+                .toMemberName(toMember.getName())
+                .ea(ea)
+                .reason(reason)
+                .build();
+    }
+
+    @Transactional
+    @Override
+    public PostStickerResponse postSticker(PostMemberSticker postMemberSticker) {
+        Member toMember = memberRepository.findById(postMemberSticker.getTo())
+                .orElseThrow(() -> new IllegalArgumentException("받는 회원이 유효하지 않습니다."));
+        Member fromMember = memberRepository.findById(postMemberSticker.getFrom())
+                .orElseThrow(() -> new IllegalArgumentException("스티커 발급하려는 회원이 유효하지 않습니다."));
+        String reason = postMemberSticker.getReason();
+        int ea = postMemberSticker.getEa();
+
+        Sticker sticker = Sticker.createSticker(toMember, fromMember, reason, ea);
+        stickerRepository.save(sticker);
+
         return PostStickerResponse.builder()
                 .stickerId(sticker.getId())
                 .toMemberName(toMember.getName())

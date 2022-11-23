@@ -60,7 +60,7 @@ class MemberServiceImplTest{
         Member saveLuna = memberRepository.save(luna);
         Member saveJuno = memberRepository.save(juno);
         //when
-        PostStickerResponse sticker = memberService.postSticker(saveLuna.getMemberId(), saveJuno.getMemberId(), "칭찬해", 10);
+        PostStickerResponse sticker = memberService.simpleSticker(saveLuna.getMemberId(), saveJuno.getMemberId(), "칭찬해", 10);
         //then
         Member findLuna = memberRepository.findById(saveLuna.getMemberId()).get();
     }

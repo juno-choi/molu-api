@@ -2,6 +2,7 @@ package com.molu.molu.controller.member;
 
 import com.molu.molu.domain.api.CommonApi;
 import com.molu.molu.domain.dto.member.PostMember;
+import com.molu.molu.domain.dto.member.PostMemberSticker;
 import com.molu.molu.domain.enums.api.ResultCode;
 import com.molu.molu.domain.enums.api.ResultType;
 import com.molu.molu.domain.vo.member.GetMemberStickerResponse;
@@ -43,7 +44,7 @@ public class MemberController {
     }
 
     @GetMapping("/sticker/simple")
-    public ResponseEntity<CommonApi<PostStickerResponse>> postSimpleSticker
+    public ResponseEntity<CommonApi<PostStickerResponse>> simpleSticker
             (@RequestParam(name = "to") Long toMemberId,
              @RequestParam(name = "from") Long fromMemberId,
              @RequestParam String reason, @RequestParam int ea){
@@ -51,7 +52,16 @@ public class MemberController {
         return ResponseEntity.ok(CommonApi.<PostStickerResponse>builder()
                 .resultCode(ResultCode.SUCCESS)
                 .resultType(ResultType.NONE)
-                .data(memberService.postSticker(toMemberId, fromMemberId, reason, ea))
+                .data(memberService.simpleSticker(toMemberId, fromMemberId, reason, ea))
+                .build());
+    }
+
+    @PostMapping("/sticker")
+    public ResponseEntity<CommonApi<PostStickerResponse>> postSticker(@RequestBody PostMemberSticker postMemberSticker){
+        return ResponseEntity.ok(CommonApi.<PostStickerResponse>builder()
+                .resultCode(ResultCode.SUCCESS)
+                .resultType(ResultType.NONE)
+                .data(memberService.postSticker(postMemberSticker))
                 .build());
     }
 }
