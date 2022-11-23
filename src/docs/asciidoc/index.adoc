@@ -34,8 +34,25 @@ include::{snippets}/member-controller-docs/post-member/http-response.adoc[]
 
 include::{snippets}/member-controller-docs/post-member/response-fields.adoc[]
 
+### 📄 스티카 발급 (Post 방식)
 
-### 📄 스티카 발급
+==== ✅ REQUEST
+include::{snippets}/member-controller-docs/post-sticker/http-request.adoc[]
+
+==== ✅ REQUEST FIELD
+
+include::{snippets}/member-controller-docs/post-sticker/request-fields.adoc[]
+
+==== ✅ RESPONSE
+
+include::{snippets}/member-controller-docs/post-sticker/http-response.adoc[]
+
+==== ✅ RESPONSE FIELD
+
+include::{snippets}/member-controller-docs/post-sticker/response-fields.adoc[]
+
+
+### 📄 스티카 발급 (Simple 방식)
 
 ==== ✅ REQUEST
 include::{snippets}/member-controller-docs/sticker-simple/http-request.adoc[]

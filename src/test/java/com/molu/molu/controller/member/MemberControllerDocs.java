@@ -2,6 +2,7 @@ package com.molu.molu.controller.member;
 
 import com.molu.molu.controller.config.RestdocsTest;
 import com.molu.molu.domain.dto.member.PostMember;
+import com.molu.molu.domain.dto.member.PostMemberSticker;
 import com.molu.molu.domain.entity.member.Member;
 import com.molu.molu.domain.entity.member.Sticker;
 import com.molu.molu.repository.member.MemberRepository;
@@ -120,6 +121,42 @@ class MemberControllerDocs extends RestdocsTest {
                          parameterWithName("reason").description("스티카를 주는 이유"),
                          parameterWithName("ea").description("스티카 개수")
                  ),
+                responseFields(
+                        fieldWithPath("result_code").type(JsonFieldType.STRING).description("결과 코드"),
+                        fieldWithPath("result_type").type(JsonFieldType.STRING).description("결과 타입"),
+                        fieldWithPath("result_message").type(JsonFieldType.STRING).description("결과 메세지"),
+                        fieldWithPath("data.sticker_id").type(JsonFieldType.NUMBER).description("스티카 번호"),
+                        fieldWithPath("data.to_member_name").type(JsonFieldType.STRING).description("스티카 받은 회원 이름"),
+                        fieldWithPath("data.ea").type(JsonFieldType.NUMBER).description("스티카 받은 개수"),
+                        fieldWithPath("data.reason").type(JsonFieldType.STRING).description("스티카 받은 이유")
+                )
+        ));
+    }
+
+    @Test
+    @DisplayName(PREFIX+"/sticker (post)")
+    void postSticker() throws Exception {
+        //given
+        Member luna = Member.createMember("루나");
+        Member juno = Member.createMember("주노");
+        Member saveLuna = memberRepository.save(luna);
+        Member saveJuno = memberRepository.save(juno);
+        PostMemberSticker postMemberSticker = new PostMemberSticker(saveLuna.getMemberId(), saveJuno.getMemberId(), "프론트 제일 잘하는 루나", 10);
+
+        //when
+        ResultActions perform = mockMvc.perform(
+                post(PREFIX+"/sticker")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(convertToString(postMemberSticker))
+        );
+        //then
+        perform.andDo(docs.document(
+                requestFields(
+                        fieldWithPath("to").type(JsonFieldType.NUMBER).description("스티카를 받을 회원"),
+                        fieldWithPath("from").type(JsonFieldType.NUMBER).description("스티카를 주는 회원"),
+                        fieldWithPath("reason").type(JsonFieldType.STRING).description("스티카를 주는 이유"),
+                        fieldWithPath("ea").type(JsonFieldType.NUMBER).description("스티카 개수")
+                ),
                 responseFields(
                         fieldWithPath("result_code").type(JsonFieldType.STRING).description("결과 코드"),
                         fieldWithPath("result_type").type(JsonFieldType.STRING).description("결과 타입"),
