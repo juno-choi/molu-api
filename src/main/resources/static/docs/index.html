@@ -538,7 +538,7 @@ Content-Length: 161
   "result_type" : "NONE",
   "result_message" : "정상 처리",
   "data" : {
-    "member_id" : 5,
+    "member_id" : 7,
     "name" : "tester"
   }
 }</code></pre>
@@ -738,7 +738,7 @@ Content-Length: 241
 <h4 id="_request_3"><a class="link" href="#_request_3">✅ REQUEST</a></h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">GET /v1/member/sticker/simple?to=3&amp;from=4&amp;reason=%EC%B9%AD%EC%B0%AC%ED%95%B4&amp;ea=10 HTTP/1.1
+<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">GET /v1/member/sticker/simple?to=5&amp;from=6&amp;reason=%EC%B9%AD%EC%B0%AC%ED%95%B4&amp;ea=10 HTTP/1.1
 Host: 127.0.0.1</code></pre>
 </div>
 </div>
@@ -795,7 +795,7 @@ Content-Length: 217
   "result_type" : "NONE",
   "result_message" : "정상 처리",
   "data" : {
-    "sticker_id" : 3,
+    "sticker_id" : 4,
     "to_member_name" : "루나",
     "ea" : 10,
     "reason" : "칭찬해"
@@ -865,7 +865,7 @@ Content-Length: 217
 <h4 id="_request_4"><a class="link" href="#_request_4">✅ REQUEST</a></h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">GET /v1/member/sticker/1 HTTP/1.1
+<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">GET /v1/member/sticker/3 HTTP/1.1
 Content-Type: application/json;charset=UTF-8
 Host: 127.0.0.1</code></pre>
 </div>
@@ -899,30 +899,30 @@ Host: 127.0.0.1</code></pre>
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">HTTP/1.1 201 Created
 Content-Type: application/json;charset=UTF-8
-Content-Length: 630
+Content-Length: 631
 
 {
   "result_code" : "0000",
   "result_type" : "NONE",
   "result_message" : "정상 처리",
   "data" : {
-    "member_id" : 1,
+    "member_id" : 3,
     "name" : "루나",
     "total_sticker_ea" : 15,
     "sticker" : [ {
-      "sticker_id" : 1,
-      "from_member_id" : 2,
+      "sticker_id" : 2,
+      "from_member_id" : 4,
       "from_member_name" : "주노",
       "reason" : "테스트로 줌1",
       "ea" : 5,
-      "created_at" : "2022-11-23T21:29:23.976943"
+      "created_at" : "2022-11-25T22:31:45.123151"
     }, {
-      "sticker_id" : 2,
-      "from_member_id" : 2,
+      "sticker_id" : 3,
+      "from_member_id" : 4,
       "from_member_name" : "주노",
       "reason" : "테스트로 줌2",
       "ea" : 10,
-      "created_at" : "2022-11-23T21:29:23.98394"
+      "created_at" : "2022-11-25T22:31:45.124152"
     } ]
   }
 }</code></pre>
@@ -1079,7 +1079,7 @@ Content-Length: 174
   "result_message" : "정상 처리",
   "data" : {
     "board_id" : 22,
-    "writer" : "저쩔 500 에러"
+    "writer" : "안물 404 에러"
   }
 }</code></pre>
 </div>
@@ -1136,7 +1136,7 @@ Content-Length: 174
 <h4 id="_request_6"><a class="link" href="#_request_6">✅ REQUEST</a></h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">GET /v1/board?page=0&amp;size=5&amp;sort=id%2Cdesc HTTP/1.1
+<pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">GET /v1/board?page=0&amp;size=5 HTTP/1.1
 Host: 127.0.0.1</code></pre>
 </div>
 </div>
@@ -1167,11 +1167,6 @@ Host: 127.0.0.1</code></pre>
 <td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">페이지 당 호출할 게시글 수 (default = 10)</p></td>
 </tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sort</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">false</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">정렬 기준 (default = id,desc)</p></td>
-</tr>
 </tbody>
 </table>
 </div>
@@ -1181,7 +1176,7 @@ Host: 127.0.0.1</code></pre>
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">HTTP/1.1 200 OK
 Content-Type: application/json;charset=UTF-8
-Content-Length: 1643
+Content-Length: 1716
 
 {
   "result_code" : "0000",
@@ -1194,50 +1189,50 @@ Content-Length: 1643
     "last" : false,
     "empty" : false,
     "board_list" : [ {
-      "id" : 21,
+      "board_id" : 21,
       "title" : "제목19",
       "content" : "내용19",
-      "writer" : "우짤 유효성 검사",
-      "comments" : [ ],
+      "writer" : "우짤 커밋 오류",
+      "comment_count" : 0,
       "heart" : 0,
-      "modifiedAt" : "2022-11-23T21:29:22.166078",
-      "createdAt" : "2022-11-23T21:29:22.166078"
+      "modified_at" : "2022-11-25T22:31:43.307437",
+      "created_at" : "2022-11-25T22:31:43.307437"
     }, {
-      "id" : 20,
+      "board_id" : 20,
       "title" : "제목18",
       "content" : "내용18",
-      "writer" : "저짤 500 에러",
-      "comments" : [ ],
+      "writer" : "참나 접속 에러",
+      "comment_count" : 0,
       "heart" : 0,
-      "modifiedAt" : "2022-11-23T21:29:22.165077",
-      "createdAt" : "2022-11-23T21:29:22.165077"
+      "modified_at" : "2022-11-25T22:31:43.305437",
+      "created_at" : "2022-11-25T22:31:43.305437"
     }, {
-      "id" : 19,
+      "board_id" : 19,
       "title" : "제목17",
       "content" : "내용17",
-      "writer" : "저짤 404 에러",
-      "comments" : [ ],
+      "writer" : "어쩔 파라미터 없음",
+      "comment_count" : 0,
       "heart" : 0,
-      "modifiedAt" : "2022-11-23T21:29:22.164077",
-      "createdAt" : "2022-11-23T21:29:22.164077"
+      "modified_at" : "2022-11-25T22:31:43.304436",
+      "created_at" : "2022-11-25T22:31:43.304436"
     }, {
-      "id" : 18,
+      "board_id" : 18,
       "title" : "제목16",
       "content" : "내용16",
-      "writer" : "참나 빌드 에러",
-      "comments" : [ ],
+      "writer" : "저짤 파라미터 없음",
+      "comment_count" : 0,
       "heart" : 0,
-      "modifiedAt" : "2022-11-23T21:29:22.163078",
-      "createdAt" : "2022-11-23T21:29:22.163078"
+      "modified_at" : "2022-11-25T22:31:43.303437",
+      "created_at" : "2022-11-25T22:31:43.303437"
     }, {
-      "id" : 17,
+      "board_id" : 17,
       "title" : "제목15",
       "content" : "내용15",
-      "writer" : "저쩔 깃 충돌",
-      "comments" : [ ],
+      "writer" : "어쩔 접속 에러",
+      "comment_count" : 0,
       "heart" : 0,
-      "modifiedAt" : "2022-11-23T21:29:22.162079",
-      "createdAt" : "2022-11-23T21:29:22.162079"
+      "modified_at" : "2022-11-25T22:31:43.302437",
+      "created_at" : "2022-11-25T22:31:43.302437"
     } ]
   }
 }</code></pre>
@@ -1301,7 +1296,7 @@ Content-Length: 1643
 <td class="tableblock halign-left valign-top"><p class="tableblock">호출 페이지 빈 페이지 여부</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.board_list[].id</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.board_list[].board_id</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">게시글 id</p></td>
 </tr>
@@ -1316,9 +1311,9 @@ Content-Length: 1643
 <td class="tableblock halign-left valign-top"><p class="tableblock">게시글 내용</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.board_list[].comments</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">댓글</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.board_list[].comment_count</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">댓글 수</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.board_list[].writer</code></p></td>
@@ -1331,12 +1326,12 @@ Content-Length: 1643
 <td class="tableblock halign-left valign-top"><p class="tableblock">게시글 좋아요</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.board_list[].modifiedAt</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.board_list[].modified_at</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">게시글 수정일</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.board_list[].createdAt</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.board_list[].created_at</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">게시글 생성일</p></td>
 </tr>
@@ -1458,7 +1453,7 @@ Content-Length: 154
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2022-11-23 23:31:51 +0900
+Last updated 2022-11-25 21:01:44 +0900
 </div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.3/highlight.min.js"></script>
