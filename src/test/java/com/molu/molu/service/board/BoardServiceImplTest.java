@@ -49,7 +49,7 @@ class BoardServiceImplTest {
     @DisplayName("게시글 페이징 성공한다.")
     void getBoardSuccess() throws Exception {
         //given
-        for(int i=0; i<20; i++){
+        for(int i=1; i<=20; i++){
             PostBoard postBoard = new PostBoard("제목" + i, "내용" + i);
             boardRepository.save(Board.createBoard(postBoard));
         }

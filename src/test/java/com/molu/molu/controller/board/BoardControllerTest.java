@@ -77,26 +77,6 @@ public class BoardControllerTest extends ControllerTest {
     }
 
     @Test
-    @DisplayName("get board의 sort 값을 잘못 입력하면 실패한다.")
-    void getBoardFail1() throws Exception {
-        //given
-        PostBoard postBoard = new PostBoard("제목", "내용");
-        boardRepository.save(Board.createBoard(postBoard));
-        //when
-        ResultActions perform = mockMvc.perform(
-                get(PREFIX)
-                .param("size", "3")
-                .param("page", "0")
-                .param("sort","id,as")
-        ).andDo(print());
-        //then
-        assertTrue(perform.andReturn()
-                .getResponse()
-                .getContentAsString(StandardCharsets.UTF_8)
-                .contains(ErrorCode.BAD_REQUEST.CODE));
-    }
-
-    @Test
     @DisplayName("유효하지 않은 게시물 id는 좋아요에 실패한다.")
     void addHeartFail1() throws Exception {
         //given

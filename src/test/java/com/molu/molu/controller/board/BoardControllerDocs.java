@@ -72,13 +72,12 @@ class BoardControllerDocs extends RestdocsTest {
                 get(PREFIX)
                 .param("page", "0")
                 .param("size", "5")
-                .param("sort", "id,desc"));
+                );
         //then
         perform.andDo(docs.document(
                 requestParameters(
                         parameterWithName("page").description("페이지 번호 (default = 0)").optional(),
-                        parameterWithName("size").description("페이지 당 호출할 게시글 수 (default = 10)").optional(),
-                        parameterWithName("sort").description("정렬 기준 (default = id,desc)").optional()
+                        parameterWithName("size").description("페이지 당 호출할 게시글 수 (default = 10)").optional()
                 ),
                 responseFields(
                         fieldWithPath("result_code").type(JsonFieldType.STRING).description("결과 코드"),
@@ -89,14 +88,14 @@ class BoardControllerDocs extends RestdocsTest {
                         fieldWithPath("data.number_of_elements").type(JsonFieldType.NUMBER).description("호출한 페이지 게시글 수"),
                         fieldWithPath("data.last").type(JsonFieldType.BOOLEAN).description("마지막 페이지 여부"),
                         fieldWithPath("data.empty").type(JsonFieldType.BOOLEAN).description("호출 페이지 빈 페이지 여부"),
-                        fieldWithPath("data.board_list[].id").type(JsonFieldType.NUMBER).description("게시글 id"),
+                        fieldWithPath("data.board_list[].board_id").type(JsonFieldType.NUMBER).description("게시글 id"),
                         fieldWithPath("data.board_list[].title").type(JsonFieldType.STRING).description("게시글 제목"),
                         fieldWithPath("data.board_list[].content").type(JsonFieldType.STRING).description("게시글 내용"),
-                        fieldWithPath("data.board_list[].comments").type(JsonFieldType.ARRAY).description("댓글"),
+                        fieldWithPath("data.board_list[].comment_count").type(JsonFieldType.NUMBER).description("댓글 수"),
                         fieldWithPath("data.board_list[].writer").type(JsonFieldType.STRING).description("게시글 익명 작성자"),
                         fieldWithPath("data.board_list[].heart").type(JsonFieldType.NUMBER).description("게시글 좋아요"),
-                        fieldWithPath("data.board_list[].modifiedAt").type(JsonFieldType.STRING).description("게시글 수정일"),
-                        fieldWithPath("data.board_list[].createdAt").type(JsonFieldType.STRING).description("게시글 생성일")
+                        fieldWithPath("data.board_list[].modified_at").type(JsonFieldType.STRING).description("게시글 수정일"),
+                        fieldWithPath("data.board_list[].created_at").type(JsonFieldType.STRING).description("게시글 생성일")
                 )
         ));
     }

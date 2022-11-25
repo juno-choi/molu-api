@@ -37,7 +37,7 @@ public class BoardServiceImpl implements BoardService{
 
     @Override
     public GetBoardResponse getBoard(Pageable page) {
-        Page<Board> findAll = getBoardPage(page);
+        Page<BoardDto> findAll = getBoardPage(page);
         return GetBoardResponse.builder()
                 .last(findAll.isLast())
                 .empty(findAll.isEmpty())
@@ -62,16 +62,7 @@ public class BoardServiceImpl implements BoardService{
                 .build();
     }
 
-    private Page<Board> getBoardPage(Pageable page) {
-        Page<BoardDto> boardPage = boardRepository.findBoardPage(page);
-        log.debug("테스트");
-
-        Page<Board> findAll;
-        try{
-            findAll = boardRepository.findAll(page);
-        }catch (PropertyReferenceException e){
-            throw new IllegalArgumentException(String.format("잘못된 요청 값 = %s", e.getPropertyName()));
-        }
-        return findAll;
+    private Page<BoardDto> getBoardPage(Pageable page) {
+        return boardRepository.findBoardPage(page);
     }
 }

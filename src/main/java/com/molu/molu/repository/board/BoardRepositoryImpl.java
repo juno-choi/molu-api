@@ -3,7 +3,9 @@ package com.molu.molu.repository.board;
 import com.molu.molu.common.querydsl.QueryDslConfig;
 import com.molu.molu.domain.dto.board.BoardDto;
 import com.molu.molu.domain.entity.board.QComment;
+import com.querydsl.core.types.ExpressionUtils;
 import com.querydsl.core.types.Projections;
+import com.querydsl.jpa.JPAExpressions;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -29,13 +31,17 @@ public class BoardRepositoryImpl implements BoardRepositoryCustom{
                         board.title,
                         board.content,
                         board.writer,
-                        board.comments,
+                        ExpressionUtils.as(
+                                JPAExpressions.select(comment1.board.count())
+                                .from(comment1)
+                                .where(comment1.board.boardId.eq(board.boardId)),"commentCount"
+                        ),
                         board.heart,
                         board.modifiedAt,
                         board.createdAt
                 ))
                 .from(board)
-//                .leftJoin(board.comments, comment1)
+                .orderBy(board.boardId.desc())
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .fetch();
@@ -43,6 +49,6 @@ public class BoardRepositoryImpl implements BoardRepositoryCustom{
         Long total = qd.query()
                 .from(board)
                 .stream().count();
-        return new PageImpl<BoardDto>(content, pageable, total);
+        return new PageImpl<>(content, pageable, total);
     }
 }
