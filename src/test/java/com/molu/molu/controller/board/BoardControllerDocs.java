@@ -91,6 +91,7 @@ class BoardControllerDocs extends RestdocsTest {
                         fieldWithPath("data.board_list[].board_id").type(JsonFieldType.NUMBER).description("게시글 id"),
                         fieldWithPath("data.board_list[].title").type(JsonFieldType.STRING).description("게시글 제목"),
                         fieldWithPath("data.board_list[].content").type(JsonFieldType.STRING).description("게시글 내용"),
+                        fieldWithPath("data.board_list[].comments").type(JsonFieldType.ARRAY).description("댓글 (최대 5개만 우선 전달)"),
                         fieldWithPath("data.board_list[].comment_count").type(JsonFieldType.NUMBER).description("댓글 수"),
                         fieldWithPath("data.board_list[].writer").type(JsonFieldType.STRING).description("게시글 익명 작성자"),
                         fieldWithPath("data.board_list[].heart").type(JsonFieldType.NUMBER).description("게시글 좋아요"),

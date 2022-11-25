@@ -2,10 +2,12 @@ package com.molu.molu.repository.board;
 
 import com.molu.molu.common.querydsl.QueryDslConfig;
 import com.molu.molu.domain.dto.board.BoardDto;
+import com.molu.molu.domain.entity.board.Comment;
 import com.molu.molu.domain.entity.board.QComment;
 import com.querydsl.core.types.ExpressionUtils;
 import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.JPAExpressions;
+import com.querydsl.jpa.impl.JPAQuery;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -45,6 +47,15 @@ public class BoardRepositoryImpl implements BoardRepositoryCustom{
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .fetch();
+
+        for(BoardDto dto : content){
+            List<Comment> comments = qd.query()
+                    .selectFrom(comment1)
+                    .limit(5L)
+                    .where(comment1.board.boardId.eq(dto.getBoardId()))
+                    .fetch();
+            dto.setComments(comments);
+        }
 
         Long total = qd.query()
                 .from(board)
