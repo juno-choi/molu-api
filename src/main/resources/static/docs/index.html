@@ -915,14 +915,14 @@ Content-Length: 631
       "from_member_name" : "주노",
       "reason" : "테스트로 줌1",
       "ea" : 5,
-      "created_at" : "2022-11-25T22:31:45.123151"
+      "created_at" : "2022-11-25T23:21:21.878879"
     }, {
       "sticker_id" : 3,
       "from_member_id" : 4,
       "from_member_name" : "주노",
       "reason" : "테스트로 줌2",
       "ea" : 10,
-      "created_at" : "2022-11-25T22:31:45.124152"
+      "created_at" : "2022-11-25T23:21:21.879879"
     } ]
   }
 }</code></pre>
@@ -1071,7 +1071,7 @@ Host: 127.0.0.1
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">HTTP/1.1 201 Created
 Content-Type: application/json;charset=UTF-8
-Content-Length: 174
+Content-Length: 180
 
 {
   "result_code" : "0000",
@@ -1079,7 +1079,7 @@ Content-Length: 174
   "result_message" : "정상 처리",
   "data" : {
     "board_id" : 22,
-    "writer" : "안물 404 에러"
+    "writer" : "뇌절 유효성 검사"
   }
 }</code></pre>
 </div>
@@ -1176,7 +1176,7 @@ Host: 127.0.0.1</code></pre>
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">HTTP/1.1 200 OK
 Content-Type: application/json;charset=UTF-8
-Content-Length: 1716
+Content-Length: 1822
 
 {
   "result_code" : "0000",
@@ -1192,47 +1192,52 @@ Content-Length: 1716
       "board_id" : 21,
       "title" : "제목19",
       "content" : "내용19",
-      "writer" : "우짤 커밋 오류",
+      "writer" : "안물 빌드 에러",
       "comment_count" : 0,
       "heart" : 0,
-      "modified_at" : "2022-11-25T22:31:43.307437",
-      "created_at" : "2022-11-25T22:31:43.307437"
+      "modified_at" : "2022-11-25T23:21:19.922547",
+      "created_at" : "2022-11-25T23:21:19.922547",
+      "comments" : [ ]
     }, {
       "board_id" : 20,
       "title" : "제목18",
       "content" : "내용18",
-      "writer" : "참나 접속 에러",
+      "writer" : "저짤 깃 충돌",
       "comment_count" : 0,
       "heart" : 0,
-      "modified_at" : "2022-11-25T22:31:43.305437",
-      "created_at" : "2022-11-25T22:31:43.305437"
+      "modified_at" : "2022-11-25T23:21:19.92051",
+      "created_at" : "2022-11-25T23:21:19.92051",
+      "comments" : [ ]
     }, {
       "board_id" : 19,
       "title" : "제목17",
       "content" : "내용17",
-      "writer" : "어쩔 파라미터 없음",
+      "writer" : "저짤 유효성 검사",
       "comment_count" : 0,
       "heart" : 0,
-      "modified_at" : "2022-11-25T22:31:43.304436",
-      "created_at" : "2022-11-25T22:31:43.304436"
+      "modified_at" : "2022-11-25T23:21:19.92051",
+      "created_at" : "2022-11-25T23:21:19.92051",
+      "comments" : [ ]
     }, {
       "board_id" : 18,
       "title" : "제목16",
       "content" : "내용16",
-      "writer" : "저짤 파라미터 없음",
+      "writer" : "저쩔 커밋 오류",
       "comment_count" : 0,
       "heart" : 0,
-      "modified_at" : "2022-11-25T22:31:43.303437",
-      "created_at" : "2022-11-25T22:31:43.303437"
+      "modified_at" : "2022-11-25T23:21:19.919511",
+      "created_at" : "2022-11-25T23:21:19.919511",
+      "comments" : [ ]
     }, {
       "board_id" : 17,
       "title" : "제목15",
       "content" : "내용15",
-      "writer" : "어쩔 접속 에러",
+      "writer" : "어쩔 404 에러",
       "comment_count" : 0,
       "heart" : 0,
-      "modified_at" : "2022-11-25T22:31:43.302437",
-      "created_at" : "2022-11-25T22:31:43.302437"
+      "modified_at" : "2022-11-25T23:21:19.918512",
+      "created_at" : "2022-11-25T23:21:19.918512",
+      "comments" : [ ]
     } ]
   }
 }</code></pre>
@@ -1309,6 +1314,11 @@ Content-Length: 1716
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.board_list[].content</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">게시글 내용</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.board_list[].comments</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Array</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">댓글 (최대 5개만 우선 전달)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.board_list[].comment_count</code></p></td>
