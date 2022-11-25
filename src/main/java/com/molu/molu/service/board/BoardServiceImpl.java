@@ -1,5 +1,6 @@
 package com.molu.molu.service.board;
 
+import com.molu.molu.domain.dto.board.BoardDto;
 import com.molu.molu.domain.dto.board.PatchBoard;
 import com.molu.molu.domain.dto.board.PostBoard;
 import com.molu.molu.domain.entity.board.Board;
@@ -29,7 +30,7 @@ public class BoardServiceImpl implements BoardService{
         boardRepository.save(board);
 
         return PostBoardResponse.builder()
-                .boardId(board.getId())
+                .boardId(board.getBoardId())
                 .writer(board.getWriter())
                 .build();
     }
@@ -56,12 +57,15 @@ public class BoardServiceImpl implements BoardService{
         board.addHeart();
 
         return AddHeartResponse.builder()
-                .boardId(board.getId())
+                .boardId(board.getBoardId())
                 .heart(board.getHeart())
                 .build();
     }
 
     private Page<Board> getBoardPage(Pageable page) {
+        Page<BoardDto> boardPage = boardRepository.findBoardPage(page);
+        log.debug("테스트");
+
         Page<Board> findAll;
         try{
             findAll = boardRepository.findAll(page);

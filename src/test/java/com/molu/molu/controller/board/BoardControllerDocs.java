@@ -107,7 +107,7 @@ class BoardControllerDocs extends RestdocsTest {
         //given
         PostBoard postBoard = new PostBoard("좋아요 게시글", "내용");
         Board saveBoard = boardRepository.save(Board.createBoard(postBoard));
-        Long boardId = saveBoard.getId();
+        Long boardId = saveBoard.getBoardId();
 
         PatchBoard patchBoard = new PatchBoard(boardId);
         //when

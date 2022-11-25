@@ -2,6 +2,7 @@ package com.molu.molu.domain.entity.board;
 
 import com.molu.molu.common.utils.Naming;
 import com.molu.molu.domain.dto.board.PostBoard;
+import com.querydsl.core.annotations.QueryProjection;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -16,13 +17,13 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
 public class Board {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long boardId;
 
     @Column(nullable = false, length = 30)
     private String title;
@@ -31,7 +32,7 @@ public class Board {
     @Column(nullable = false)
     private String writer;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "commentId")
     private List<Comment> comments = new LinkedList<>();
 
     @Column(nullable = true, columnDefinition = "bigint default 0")
