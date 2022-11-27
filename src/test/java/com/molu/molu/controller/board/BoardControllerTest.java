@@ -3,8 +3,6 @@ package com.molu.molu.controller.board;
 import com.molu.molu.controller.config.ControllerTest;
 import com.molu.molu.domain.dto.board.PatchBoard;
 import com.molu.molu.domain.dto.board.PostBoard;
-import com.molu.molu.domain.entity.board.Board;
-import com.molu.molu.domain.enums.api.ErrorCode;
 import com.molu.molu.repository.board.BoardRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -15,10 +13,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.ResultActions;
 
-import java.nio.charset.StandardCharsets;
-
 import static org.junit.jupiter.api.Assertions.*;
-import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.get;
 import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.patch;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -60,7 +55,7 @@ public class BoardControllerTest extends ControllerTest {
                 .andDo(print());
         //then
         perform.andExpect(status().is4xxClientError());
-        perform.andExpect(content().json("{\"error_code\":\"9400\",\"message\":\"잘못된 요청. error field 값은 모두 snake 전략으로 변경하여 요청해주세요.\",\"errors\":[{\"field\":\"content\",\"message\":\"내용을 입력해주세요.\"}]}"));
+        perform.andExpect(content().json("{\"error_code\":\"9400\",\"message\":\"잘못된 요청. error field 값은 모두 snake 전략으로 변경하여 요청해주세요.\",\"errors\":[{\"field\":\"content\",\"message\":\"내용을 입력해주세요.\"},{\"field\":\"content\",\"message\":\"내용은 3000자까지 입력이 가능합니다!\"}]}"));
     }
     @Test
     @DisplayName("아무 입력도 없는 게시물 등록은 실패한다.")
