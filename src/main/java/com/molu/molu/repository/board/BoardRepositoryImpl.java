@@ -77,24 +77,12 @@ public class BoardRepositoryImpl implements BoardRepositoryCustom{
             Stream<CommentDto> commentStream = findComment.stream().filter(c -> c.getBoardId() == dto.getBoardId());
             List<CommentDto> comments = commentStream.collect(Collectors.toList());
             Collections.reverse(comments);
-            List<CommentDto> newComments = new LinkedList<>();
-            setComments(dto, comments, newComments);
+            dto.setComments(comments);
         }
 
         Long total = qd.query()
                 .from(board)
                 .stream().count();
         return new PageImpl<>(content, pageable, total);
-    }
-
-    private void setComments(BoardDto dto, List<CommentDto> comments, List<CommentDto> newComments) {
-        if(comments.size() > 5){
-            for(int i=0; i<5; i++){
-                newComments.add(comments.get(i));
-            }
-            dto.setComments(newComments);
-        }else{
-            dto.setComments(comments);
-        }
     }
 }
