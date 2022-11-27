@@ -55,7 +55,7 @@ public class BoardControllerTest extends ControllerTest {
                 .andDo(print());
         //then
         perform.andExpect(status().is4xxClientError());
-        perform.andExpect(content().json("{\"error_code\":\"9400\",\"message\":\"잘못된 요청. error field 값은 모두 snake 전략으로 변경하여 요청해주세요.\",\"errors\":[{\"field\":\"content\",\"message\":\"내용을 입력해주세요.\"},{\"field\":\"content\",\"message\":\"내용은 3000자까지 입력이 가능합니다!\"}]}"));
+        perform.andExpect(content().json("{\"error_code\":\"9400\",\"message\":\"잘못된 요청. error field 값은 모두 snake 전략으로 변경하여 요청해주세요.\",\"errors\":[{\"field\":\"content\",\"message\":\"내용을 입력해주세요.\"}]}"));
     }
     @Test
     @DisplayName("아무 입력도 없는 게시물 등록은 실패한다.")
