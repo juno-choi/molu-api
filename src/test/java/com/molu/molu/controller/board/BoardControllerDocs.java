@@ -71,7 +71,7 @@ class BoardControllerDocs extends RestdocsTest {
         for(int i=0; i<20; i++){
             PostBoard postBoard = new PostBoard("제목" + i, "내용" + i);
             Board saveBoard = boardRepository.save(Board.of(postBoard));
-            for(int j=1; j<=3; j++){
+            for(int j=1; j<=6; j++){
                 commentRepository.save(Comment.of(0L, "댓글"+j, saveBoard));
             }
         }
