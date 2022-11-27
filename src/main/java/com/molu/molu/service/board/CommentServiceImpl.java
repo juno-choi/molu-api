@@ -17,6 +17,7 @@ public class CommentServiceImpl implements CommentService{
     private final BoardRepository boardRepository;
     private final CommentRepository commentRepository;
 
+    @Transactional
     @Override
     public PostCommentResponse postComment(PostComment postComment) {
         Board board = boardRepository.findById(postComment.getBoardId())
