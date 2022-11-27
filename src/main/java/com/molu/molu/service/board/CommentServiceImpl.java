@@ -31,6 +31,7 @@ public class CommentServiceImpl implements CommentService{
                 .commentId(saveComment.getCommentId())
                 .memberId(saveComment.getMemberId())
                 .comment(saveComment.getComment())
+                .writer(saveComment.getWriter())
                 .modifiedAt(saveComment.getModifiedAt())
                 .createdAt(saveComment.getCreatedAt())
                 .build();
