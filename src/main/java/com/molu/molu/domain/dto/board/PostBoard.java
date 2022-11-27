@@ -16,6 +16,6 @@ public class PostBoard {
     private String title;
 
     @NotEmpty(message = "내용을 입력해주세요.")
-    @Size(max = 3000, message = "내용이 너무 깁니다!")
+    @Size(min = 1, max = 3000, message = "내용은 3000자까지 입력이 가능합니다!")
     private String content;
 }
