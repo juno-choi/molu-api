@@ -916,14 +916,14 @@ Content-Length: 631
       "from_member_name" : "주노",
       "reason" : "테스트로 줌1",
       "ea" : 5,
-      "created_at" : "2022-11-27T20:13:20.104433"
+      "created_at" : "2022-11-27T20:26:21.506848"
     }, {
       "sticker_id" : 3,
       "from_member_id" : 4,
       "from_member_name" : "주노",
       "reason" : "테스트로 줌2",
       "ea" : 10,
-      "created_at" : "2022-11-27T20:13:20.105433"
+      "created_at" : "2022-11-27T20:26:21.507848"
     } ]
   }
 }</code></pre>
@@ -1072,7 +1072,7 @@ Host: 127.0.0.1
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">HTTP/1.1 201 Created
 Content-Type: application/json;charset=UTF-8
-Content-Length: 177
+Content-Length: 174
 
 {
   "result_code" : "0000",
@@ -1080,7 +1080,7 @@ Content-Length: 177
   "result_message" : "정상 처리",
   "data" : {
     "board_id" : 22,
-    "writer" : "참나 커밋 오류"
+    "writer" : "저짤 깃 충돌"
   }
 }</code></pre>
 </div>
@@ -1177,7 +1177,7 @@ Host: 127.0.0.1</code></pre>
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">HTTP/1.1 200 OK
 Content-Type: application/json;charset=UTF-8
-Content-Length: 5301
+Content-Length: 5965
 
 {
   "result_code" : "0000",
@@ -1193,156 +1193,171 @@ Content-Length: 5301
       "board_id" : 21,
       "title" : "제목19",
       "content" : "내용19",
-      "writer" : "뇌절 404 에러",
+      "writer" : "안물 파라미터 없음",
       "comment_count" : 3,
       "heart" : 0,
-      "modified_at" : "2022-11-27T20:13:17.710301",
-      "created_at" : "2022-11-27T20:13:17.710301",
+      "modified_at" : "2022-11-27T20:26:19.525587",
+      "created_at" : "2022-11-27T20:26:19.525587",
       "comments" : [ {
         "comment_id" : 58,
         "member_id" : 0,
         "board_id" : 21,
         "comment" : "댓글1",
-        "modified_at" : "2022-11-27T20:13:17.711302",
-        "created_at" : "2022-11-27T20:13:17.711302"
+        "writer" : "어쩔 파라미터 없음",
+        "modified_at" : "2022-11-27T20:26:19.525587",
+        "created_at" : "2022-11-27T20:26:19.525587"
       }, {
         "comment_id" : 59,
         "member_id" : 0,
         "board_id" : 21,
         "comment" : "댓글2",
-        "modified_at" : "2022-11-27T20:13:17.712305",
-        "created_at" : "2022-11-27T20:13:17.712305"
+        "writer" : "참나 빌드 에러",
+        "modified_at" : "2022-11-27T20:26:19.526589",
+        "created_at" : "2022-11-27T20:26:19.526589"
       }, {
         "comment_id" : 60,
         "member_id" : 0,
         "board_id" : 21,
         "comment" : "댓글3",
-        "modified_at" : "2022-11-27T20:13:17.713337",
-        "created_at" : "2022-11-27T20:13:17.713337"
+        "writer" : "저쩔 빌드 에러",
+        "modified_at" : "2022-11-27T20:26:19.527588",
+        "created_at" : "2022-11-27T20:26:19.527588"
       } ]
     }, {
       "board_id" : 20,
       "title" : "제목18",
       "content" : "내용18",
-      "writer" : "참나 접속 에러",
+      "writer" : "안궁 접속 에러",
       "comment_count" : 3,
       "heart" : 0,
-      "modified_at" : "2022-11-27T20:13:17.706303",
-      "created_at" : "2022-11-27T20:13:17.706303",
+      "modified_at" : "2022-11-27T20:26:19.521587",
+      "created_at" : "2022-11-27T20:26:19.521587",
       "comments" : [ {
         "comment_id" : 55,
         "member_id" : 0,
         "board_id" : 20,
         "comment" : "댓글1",
-        "modified_at" : "2022-11-27T20:13:17.707303",
-        "created_at" : "2022-11-27T20:13:17.707303"
+        "writer" : "안궁 파라미터 없음",
+        "modified_at" : "2022-11-27T20:26:19.522588",
+        "created_at" : "2022-11-27T20:26:19.522588"
       }, {
         "comment_id" : 56,
         "member_id" : 0,
         "board_id" : 20,
         "comment" : "댓글2",
-        "modified_at" : "2022-11-27T20:13:17.708303",
-        "created_at" : "2022-11-27T20:13:17.708303"
+        "writer" : "참나 유효성 검사",
+        "modified_at" : "2022-11-27T20:26:19.523587",
+        "created_at" : "2022-11-27T20:26:19.523587"
       }, {
         "comment_id" : 57,
         "member_id" : 0,
         "board_id" : 20,
         "comment" : "댓글3",
-        "modified_at" : "2022-11-27T20:13:17.709302",
-        "created_at" : "2022-11-27T20:13:17.709302"
+        "writer" : "우짤 500 에러",
+        "modified_at" : "2022-11-27T20:26:19.524587",
+        "created_at" : "2022-11-27T20:26:19.524587"
       } ]
     }, {
       "board_id" : 19,
       "title" : "제목17",
       "content" : "내용17",
-      "writer" : "안궁 파라미터 없음",
+      "writer" : "저짤 404 에러",
       "comment_count" : 3,
       "heart" : 0,
-      "modified_at" : "2022-11-27T20:13:17.701306",
-      "created_at" : "2022-11-27T20:13:17.701306",
+      "modified_at" : "2022-11-27T20:26:19.518589",
+      "created_at" : "2022-11-27T20:26:19.518589",
       "comments" : [ {
         "comment_id" : 52,
         "member_id" : 0,
         "board_id" : 19,
         "comment" : "댓글1",
-        "modified_at" : "2022-11-27T20:13:17.702304",
-        "created_at" : "2022-11-27T20:13:17.702304"
+        "writer" : "저짤 빌드 에러",
+        "modified_at" : "2022-11-27T20:26:19.51959",
+        "created_at" : "2022-11-27T20:26:19.51959"
       }, {
         "comment_id" : 53,
         "member_id" : 0,
         "board_id" : 19,
         "comment" : "댓글2",
-        "modified_at" : "2022-11-27T20:13:17.704303",
-        "created_at" : "2022-11-27T20:13:17.704303"
+        "writer" : "참나 커밋 오류",
+        "modified_at" : "2022-11-27T20:26:19.520588",
+        "created_at" : "2022-11-27T20:26:19.520588"
       }, {
         "comment_id" : 54,
         "member_id" : 0,
         "board_id" : 19,
         "comment" : "댓글3",
-        "modified_at" : "2022-11-27T20:13:17.705303",
-        "created_at" : "2022-11-27T20:13:17.705303"
+        "writer" : "저짤 빌드 에러",
+        "modified_at" : "2022-11-27T20:26:19.520588",
+        "created_at" : "2022-11-27T20:26:19.520588"
       } ]
     }, {
       "board_id" : 18,
       "title" : "제목16",
       "content" : "내용16",
-      "writer" : "저쩔 500 에러",
+      "writer" : "참나 유효성 검사",
       "comment_count" : 3,
       "heart" : 0,
-      "modified_at" : "2022-11-27T20:13:17.695302",
-      "created_at" : "2022-11-27T20:13:17.695302",
+      "modified_at" : "2022-11-27T20:26:19.51359",
+      "created_at" : "2022-11-27T20:26:19.51359",
       "comments" : [ {
         "comment_id" : 49,
         "member_id" : 0,
         "board_id" : 18,
         "comment" : "댓글1",
-        "modified_at" : "2022-11-27T20:13:17.696303",
-        "created_at" : "2022-11-27T20:13:17.696303"
+        "writer" : "안물 커밋 오류",
+        "modified_at" : "2022-11-27T20:26:19.514587",
+        "created_at" : "2022-11-27T20:26:19.514587"
       }, {
         "comment_id" : 50,
         "member_id" : 0,
         "board_id" : 18,
         "comment" : "댓글2",
-        "modified_at" : "2022-11-27T20:13:17.699302",
-        "created_at" : "2022-11-27T20:13:17.699302"
+        "writer" : "우짤 404 에러",
+        "modified_at" : "2022-11-27T20:26:19.515618",
+        "created_at" : "2022-11-27T20:26:19.515618"
       }, {
         "comment_id" : 51,
         "member_id" : 0,
         "board_id" : 18,
         "comment" : "댓글3",
-        "modified_at" : "2022-11-27T20:13:17.700307",
-        "created_at" : "2022-11-27T20:13:17.700307"
+        "writer" : "안물 커밋 오류",
+        "modified_at" : "2022-11-27T20:26:19.51759",
+        "created_at" : "2022-11-27T20:26:19.51759"
       } ]
     }, {
       "board_id" : 17,
       "title" : "제목15",
       "content" : "내용15",
-      "writer" : "저짤 깃 충돌",
+      "writer" : "안궁 접속 에러",
       "comment_count" : 3,
       "heart" : 0,
-      "modified_at" : "2022-11-27T20:13:17.690302",
-      "created_at" : "2022-11-27T20:13:17.690302",
+      "modified_at" : "2022-11-27T20:26:19.50959",
+      "created_at" : "2022-11-27T20:26:19.50959",
       "comments" : [ {
         "comment_id" : 46,
         "member_id" : 0,
         "board_id" : 17,
         "comment" : "댓글1",
-        "modified_at" : "2022-11-27T20:13:17.692304",
-        "created_at" : "2022-11-27T20:13:17.692304"
+        "writer" : "참나 500 에러",
+        "modified_at" : "2022-11-27T20:26:19.510591",
+        "created_at" : "2022-11-27T20:26:19.510591"
       }, {
         "comment_id" : 47,
         "member_id" : 0,
         "board_id" : 17,
         "comment" : "댓글2",
-        "modified_at" : "2022-11-27T20:13:17.693302",
-        "created_at" : "2022-11-27T20:13:17.693302"
+        "writer" : "어쩔 404 에러",
+        "modified_at" : "2022-11-27T20:26:19.511591",
+        "created_at" : "2022-11-27T20:26:19.511591"
       }, {
         "comment_id" : 48,
         "member_id" : 0,
         "board_id" : 17,
         "comment" : "댓글3",
-        "modified_at" : "2022-11-27T20:13:17.694305",
-        "created_at" : "2022-11-27T20:13:17.694305"
+        "writer" : "참나 커밋 오류",
+        "modified_at" : "2022-11-27T20:26:19.512588",
+        "created_at" : "2022-11-27T20:26:19.512588"
       } ]
     } ]
   }
@@ -1445,6 +1460,11 @@ Content-Length: 5301
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.board_list[].comments[].comment</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">댓글 내용</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.board_list[].comments[].writer</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">댓글 익명 작성자</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>data.board_list[].comments[].modified_at</code></p></td>
@@ -1651,7 +1671,7 @@ Host: 127.0.0.1
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-http hljs" data-lang="http">HTTP/1.1 201 Created
 Content-Type: application/json;charset=UTF-8
-Content-Length: 368
+Content-Length: 362
 
 {
   "result_code" : "0000",
@@ -1662,9 +1682,9 @@ Content-Length: 368
     "member_id" : 0,
     "board_id" : 1,
     "comment" : "댓글 입니다.",
-    "writer" : "어쩔 파라미터 없음",
-    "modified_at" : "2022-11-27T20:13:19.9714336",
-    "created_at" : "2022-11-27T20:13:19.9714336"
+    "writer" : "참나 접속 에러",
+    "modified_at" : "2022-11-27T20:26:21.3828477",
+    "created_at" : "2022-11-27T20:26:21.3828477"
   }
 }</code></pre>
 </div>

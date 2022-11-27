@@ -63,6 +63,7 @@ public class BoardRepositoryImpl implements BoardRepositoryCustom{
                     comment1.memberId,
                     comment1.board.boardId,
                     comment1.comment,
+                    comment1.writer,
                     comment1.modifiedAt,
                     comment1.createdAt
                 ))
