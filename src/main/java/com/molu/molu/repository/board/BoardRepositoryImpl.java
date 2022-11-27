@@ -69,6 +69,8 @@ public class BoardRepositoryImpl implements BoardRepositoryCustom{
                 ))
                 .from(comment1)
                 .where(comment1.board.boardId.in(boardIdList))
+                .limit(5L)
+                .orderBy(comment1.commentId.desc())
                 .fetch();
 
         for(BoardDto dto : content){
