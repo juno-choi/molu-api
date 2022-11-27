@@ -25,7 +25,7 @@ public class Board {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long boardId;
 
-    @Column(nullable = false, length = 30)
+    @Column(nullable = false, length = 100)
     private String title;
     @Column(nullable = false, length = 3000)
     private String content;

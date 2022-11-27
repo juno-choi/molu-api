@@ -21,7 +21,7 @@ public class Comment {
     private Long commentId;
     private Long memberId;
 
-    @Column(nullable = false, length = 100)
+    @Column(nullable = false, length = 500)
     private String comment;
 
     @Column(nullable = false)
