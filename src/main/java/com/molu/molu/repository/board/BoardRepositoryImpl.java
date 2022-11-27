@@ -84,7 +84,7 @@ public class BoardRepositoryImpl implements BoardRepositoryCustom{
                 }
             }
 
-            dto.setComments(comments);
+            dto.setComments(newComments);
         }
 
         Long total = qd.query()
