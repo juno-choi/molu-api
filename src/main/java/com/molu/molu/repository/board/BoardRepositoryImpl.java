@@ -16,6 +16,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -69,8 +70,6 @@ public class BoardRepositoryImpl implements BoardRepositoryCustom{
                 ))
                 .from(comment1)
                 .where(comment1.board.boardId.in(boardIdList))
-                .limit(5L)
-                .orderBy(comment1.commentId.desc())
                 .fetch();
 
         for(BoardDto dto : content){
