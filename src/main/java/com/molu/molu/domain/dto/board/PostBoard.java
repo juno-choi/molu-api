@@ -12,7 +12,7 @@ import javax.validation.constraints.Size;
 public class PostBoard {
 
     @NotEmpty(message = "제목을 입력해주세요.")
-    @Size(min = 1, max = 30, message = "제목은 1~30 글자 입니다.")
+    @Size(min = 1, max = 100, message = "제목은 1~100 글자 입니다.")
     private String title;
 
     @NotEmpty(message = "내용을 입력해주세요.")
