@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/v1/comment")
 @RequiredArgsConstructor
@@ -22,7 +24,7 @@ public class CommentController {
     private final CommentService commentService;
 
     @PostMapping("")
-    public ResponseEntity<CommonApi<PostCommentResponse>> postComment(@RequestBody PostComment postComment, BindingResult bindingResult){
+    public ResponseEntity<CommonApi<PostCommentResponse>> postComment(@Valid @RequestBody PostComment postComment, BindingResult bindingResult){
 
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(
