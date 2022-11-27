@@ -12,7 +12,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.mapping.PropertyReferenceException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -26,7 +25,7 @@ public class BoardServiceImpl implements BoardService{
     @Transactional
     @Override
     public PostBoardResponse postBoard(PostBoard request) {
-        Board board = Board.createBoard(request);
+        Board board = Board.of(request);
         boardRepository.save(board);
 
         return PostBoardResponse.builder()

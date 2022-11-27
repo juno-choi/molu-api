@@ -44,7 +44,7 @@ public class Board {
     @CreatedDate
     private LocalDateTime createdAt;
 
-    public static Board createBoard(PostBoard request){
+    public static Board of(PostBoard request){
         return new Board(null, request.getTitle(), request.getContent(), Naming.getName(), new ArrayList<>(), 0L, null, null);
     }
 

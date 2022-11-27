@@ -20,14 +20,19 @@ public class Comment {
     private Long commentId;
     private Long memberId;
 
+    @Column(nullable = false, length = 100)
+    private String comment;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "board_id")
     private Board board;
 
-    @Column(nullable = false, length = 100)
-    private String comment;
     @LastModifiedDate
     private LocalDateTime modifiedAt;
     @CreatedDate
     private LocalDateTime createdAt;
+
+    public static Comment of(Long memberId, String comment, Board board){
+        return new Comment(null, memberId, comment, board, null, null);
+    }
 }

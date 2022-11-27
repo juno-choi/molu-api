@@ -1,12 +1,15 @@
 package com.molu.molu.service.board;
 
+import com.molu.molu.domain.dto.board.CommentDto;
 import com.molu.molu.domain.dto.board.PatchBoard;
 import com.molu.molu.domain.dto.board.PostBoard;
 import com.molu.molu.domain.entity.board.Board;
+import com.molu.molu.domain.entity.board.Comment;
 import com.molu.molu.domain.vo.board.AddHeartResponse;
 import com.molu.molu.domain.vo.board.GetBoardResponse;
 import com.molu.molu.domain.vo.board.PostBoardResponse;
 import com.molu.molu.repository.board.BoardRepository;
+import com.molu.molu.repository.board.CommentRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.parallel.Execution;
@@ -29,6 +32,9 @@ class BoardServiceImplTest {
     @Autowired
     private BoardRepository boardRepository;
 
+    @Autowired
+    private CommentRepository commentRepository;
+
     @Test
     @DisplayName("게시글 등록 성공한다.")
     public void postBoardSuccess() throws Exception {
@@ -47,11 +53,11 @@ class BoardServiceImplTest {
 
     @Test
     @DisplayName("게시글 페이징 성공한다.")
-    void getBoardSuccess() throws Exception {
+    void getBoardSuccess1() throws Exception {
         //given
         for(int i=1; i<=20; i++){
             PostBoard postBoard = new PostBoard("제목" + i, "내용" + i);
-            boardRepository.save(Board.createBoard(postBoard));
+            boardRepository.save(Board.of(postBoard));
         }
 
         Pageable pageable = Pageable.ofSize(5);
@@ -64,6 +70,32 @@ class BoardServiceImplTest {
         //then
         Stream<String> title = board.getBoardList().stream().filter(b -> b.getContent().equals("내용10")).map(b -> b.getTitle());
         assertTrue(title.count() == 1);
+    }
+
+    @Test
+    @DisplayName("게시글 페이징 후 댓글을 불러오는데 성공한다.")
+    void getBoardSuccess2() throws Exception {
+        //given
+        for(int i=1; i<=20; i++){
+            PostBoard postBoard = new PostBoard("제목" + i, "내용" + i);
+            Board saveBoard = boardRepository.save(Board.of(postBoard));
+            for(int j=1; j<=3; j++){
+                commentRepository.save(Comment.of(0L, "댓글"+j, saveBoard));
+            }
+        }
+
+        Pageable pageable = Pageable.ofSize(5);
+        pageable = pageable.next();
+        pageable = pageable.next();
+
+        //when
+        GetBoardResponse board = boardService.getBoard(pageable);
+
+        //then
+//        Stream<String> title = board.getBoardList().stream().filter(b -> b.comm().equals("내용10")).map(b -> b.getTitle());
+        Stream<CommentDto> commentStream = board.getBoardList().stream().map(b -> b.getComments().get(1));
+        CommentDto comment = commentStream.findFirst().get();
+        assertTrue(comment.getComment().equals("댓글2"));
     }
 
     @Test
@@ -82,7 +114,7 @@ class BoardServiceImplTest {
     void addHeartSuccess() throws Exception {
         //given
         PostBoard postBoard = new PostBoard("좋아요 제목", "좋아요 내용");
-        Board saveBoard = boardRepository.save(Board.createBoard(postBoard));
+        Board saveBoard = boardRepository.save(Board.of(postBoard));
         Long boardId = saveBoard.getBoardId();
 
         PatchBoard request = new PatchBoard(boardId);
@@ -92,4 +124,6 @@ class BoardServiceImplTest {
         //then
         assertEquals(2L, addHeartResponse2.getHeart());
     }
+
+
 }

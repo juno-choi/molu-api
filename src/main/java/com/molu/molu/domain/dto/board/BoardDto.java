@@ -24,7 +24,7 @@ public class BoardDto {
     private long heart;
     private LocalDateTime modifiedAt;
     private LocalDateTime createdAt;
-    private List<Comment> comments;
+    private List<CommentDto> comments;
 
     public BoardDto(Long boardId, String title, String content, String writer, long commentCount, long heart, LocalDateTime modifiedAt, LocalDateTime createdAt) {
         this.boardId = boardId;
@@ -37,7 +37,7 @@ public class BoardDto {
         this.createdAt = createdAt;
     }
 
-    public void setComments(List<Comment> comments){
+    public void setComments(List<CommentDto> comments){
         this.comments = comments;
     }
 

@@ -2,6 +2,7 @@ package com.molu.molu.repository.board;
 
 import com.molu.molu.common.querydsl.QueryDslConfig;
 import com.molu.molu.domain.dto.board.BoardDto;
+import com.molu.molu.domain.dto.board.CommentDto;
 import com.molu.molu.domain.entity.board.Comment;
 import com.molu.molu.domain.entity.board.QComment;
 import com.querydsl.core.types.ExpressionUtils;
@@ -14,7 +15,10 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static com.molu.molu.domain.entity.board.QBoard.board;
 import static com.molu.molu.domain.entity.board.QComment.comment1;
@@ -48,12 +52,27 @@ public class BoardRepositoryImpl implements BoardRepositoryCustom{
                 .limit(pageable.getPageSize())
                 .fetch();
 
+        ArrayList<Long> boardIdList = new ArrayList<>();
+
         for(BoardDto dto : content){
-            List<Comment> comments = qd.query()
-                    .selectFrom(comment1)
-                    .limit(5L)
-                    .where(comment1.board.boardId.eq(dto.getBoardId()))
-                    .fetch();
+            boardIdList.add(dto.getBoardId());
+        }
+
+        List<CommentDto> findComment = qd.query().select(Projections.constructor(CommentDto.class,
+                    comment1.commentId,
+                    comment1.memberId,
+                    comment1.board.boardId,
+                    comment1.comment,
+                    comment1.modifiedAt,
+                    comment1.createdAt
+                ))
+                .from(comment1)
+                .where(comment1.board.boardId.in(boardIdList))
+                .fetch();
+
+        for(BoardDto dto : content){
+            Stream<CommentDto> commentStream = findComment.stream().filter(c -> c.getBoardId() == dto.getBoardId());
+            List<CommentDto> comments = commentStream.collect(Collectors.toList());
             dto.setComments(comments);
         }
 
