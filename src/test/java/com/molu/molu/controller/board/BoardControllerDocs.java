@@ -104,6 +104,7 @@ class BoardControllerDocs extends RestdocsTest {
                         fieldWithPath("data.board_list[].comments[].member_id").type(JsonFieldType.NUMBER).description("댓글 회원 id"),
                         fieldWithPath("data.board_list[].comments[].board_id").type(JsonFieldType.NUMBER).description("게시판 id"),
                         fieldWithPath("data.board_list[].comments[].comment").type(JsonFieldType.STRING).description("댓글 내용"),
+                        fieldWithPath("data.board_list[].comments[].writer").type(JsonFieldType.STRING).description("댓글 익명 작성자"),
                         fieldWithPath("data.board_list[].comments[].modified_at").type(JsonFieldType.STRING).description("댓글 수정일"),
                         fieldWithPath("data.board_list[].comments[].created_at").type(JsonFieldType.STRING).description("댓글 등록일"),
                         fieldWithPath("data.board_list[].comment_count").type(JsonFieldType.NUMBER).description("댓글 수"),
